@@ -58,6 +58,17 @@ Everytime you need real strings - use them.
 {% highlight abap %}
 DATA(w_name) = `Max`.
 &quot; =&gt; CString(3)
-`</pre>
+{% endhighlight %}
+
+**Note:** The space behind the country shortcut is important here because exactly three characters are required by `COUNTRY`. I hope SAP fixes that in another release...
+
+### The double quotes `&quot;...&quot;`?
+
+... aren't intended for declaring anything except comments
+
+{% highlight abap %}
+DATA(w_name) = &quot;Max&quot;.
+&quot; =&gt; Errors
+{% endhighlight %}
 
 **Another note:** The length-range only applies to hard coded values. Internally CString-variables have arbitrary length while variables of type C always have a fixed length.
