@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>lausek</title>
+        <link rel="icon" type="image/gif" href="/img/icon/icon.gif" />
+        <link rel="stylesheet" type="text/css" href="/css/minimal.css" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="lausek" />
+        <meta name="description" content="This is my little blog about programming - mainly in ABAP - and other computer stuff." />
+        <meta name="keywords" content="lausek, sap, abap, laurin, kirbach, lpk" />
+    </head>
+    <body>
+    
+    <header>
+    <a href="http://localhost:4000">&lcub;lausek&rcub;</a>
+    <nav>
+        
+    </nav>
+    <hr />
+</header>
+
+    
+    <main>
+        <h1>Hidden Statement Treasures</h2>
+<hr />
+
+<p>Have you already experienced this one moment when you discover a feature inside abap docs, you have never ever seen? The feelings will be even better if it provides a standard solution to a problem you are facing quite often. In this post, I want to share some of my favorites.</p>
+
+<h3 id="tables-to-string">Tables to string</h3>
+
+<p><code class="highlighter-rouge">CONCATENATE</code> is rusty, but offers the possibility to merge table lines into one string. Whenever I had this task, I implemented my solution in this way:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="c1">" For testing...</span>
+<span class="k">DATA</span><span class="p">(</span><span class="n">li_params</span><span class="p">)</span> <span class="o">=</span> <span class="k">VALUE</span> <span class="n">string_table</span><span class="p">(</span>
+  <span class="p">(</span> <span class="s1">`p=1`</span> <span class="p">)</span> <span class="p">(</span> <span class="s1">`s=up`</span> <span class="p">)</span> <span class="p">(</span> <span class="s1">`q=%23test`</span> <span class="p">)</span> <span class="p">(</span> <span class="s1">`p=a0s7ras213d23o4ij87`</span> <span class="p">)</span>
+<span class="p">).</span>
+
+<span class="k">DATA</span><span class="p">(</span><span class="n">lw_joined</span><span class="p">)</span> <span class="o">=</span> <span class="k">REDUCE</span> <span class="n">string</span><span class="p">(</span>
+  <span class="k">INIT</span> <span class="kt">s</span> <span class="o">=</span> <span class="s1">``</span>
+  <span class="k">FOR</span> <span class="o">&amp;</span><span class="k">lt</span><span class="err">;</span><span class="kt">x</span><span class="o">&amp;</span><span class="k">gt</span><span class="err">;</span> <span class="k">IN</span> <span class="n">li_params</span>
+  <span class="k">NEXT</span> <span class="kt">s</span> <span class="o">=</span> <span class="kt">s</span> <span class="o">&amp;</span><span class="n">amp</span><span class="err">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="err">;</span> <span class="o">&amp;</span><span class="k">lt</span><span class="err">;</span><span class="kt">x</span><span class="o">&amp;</span><span class="k">gt</span><span class="err">;</span>
+<span class="p">).</span></code></pre></figure>
+
+<p>To my luck, I recently had a look at the documentation which exposed two additional words for this command:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">CONCATENATE</span> <span class="k">LINES</span> <span class="k">OF</span> <span class="n">li_params</span> <span class="k">INTO</span> <span class="k">DATA</span><span class="p">(</span><span class="n">lw_joined</span><span class="p">).</span>
+<span class="c1">" =&amp;gt; p=1s=upq=%23testp=a0s7ras213d23o4ij87</span></code></pre></figure>
+
+<p>Even better: The <code class="highlighter-rouge">SEPARATED BY</code> addition will insert a string between and <strong>only between</strong> lines. Fits perfectly whenever you want to join GET parameters. My generic snippet would have required checks on <code class="highlighter-rouge">sy-tabix</code> - horrible.</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">CONCATENATE</span> <span class="k">LINES</span> <span class="k">OF</span> <span class="n">li_params</span> <span class="k">INTO</span> <span class="k">DATA</span><span class="p">(</span><span class="n">lw_joined</span><span class="p">)</span> <span class="k">SEPARATED</span> <span class="k">BY</span> <span class="s1">'&amp;amp;'</span><span class="p">.</span>
+<span class="c1">" =&amp;gt; p=1&amp;amp;s=up&amp;amp;q=%23test&amp;amp;p=a0s7ras213d23o4ij87 </span></code></pre></figure>
+
+<p>Still, this approach is overly verbose compared to Pythons <code class="highlighter-rouge">'&amp;amp;'.join(params)</code> but comparing expressiveness with ABAP in general is very unfair. ;-)</p>
+
+<h3 id="moving-tables-correspondingly">Moving tables correspondingly</h3>
+
+<p>While inspecting the <code class="highlighter-rouge">CORRESPONDING</code> operator, I also noticed that tables could be moved with it. A sidenote brought me back to <code class="highlighter-rouge">MOVE-CORRESPONDING</code>. Apparently this has been possible for a long time. Just append <code class="highlighter-rouge">KEEPING TARGET LINES</code> to your statement and <strong>BOOM</strong>.</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">DATA</span> <span class="n">li_knb1</span> <span class="k">TYPE</span> <span class="k">STANDARD</span> <span class="k">TABLE</span> <span class="k">OF</span> <span class="n">knb1</span> <span class="k">WITH</span> <span class="k">EMPTY</span> <span class="k">KEY</span><span class="p">.</span>
+
+<span class="c1">" Fetch some data...</span>
+<span class="k">SELECT</span> <span class="o">*</span>
+  <span class="k">FROM</span> <span class="n">kna1</span>
+  <span class="k">INTO</span> <span class="k">TABLE</span> <span class="o">@</span><span class="k">DATA</span><span class="p">(</span><span class="n">li_kna1</span><span class="p">)</span>
+  <span class="k">UP</span> <span class="k">TO</span> <span class="mi">10</span> <span class="k">ROWS</span><span class="p">.</span>
+
+<span class="c1">" Do some work and move to li_knb1</span>
+
+<span class="n">li_knb1</span> <span class="o">=</span> <span class="k">CORRESPONDING</span> <span class="o">#</span><span class="p">(</span> <span class="n">li_kna1</span> <span class="p">).</span>
+
+<span class="c1">" ... is equivalent to ...</span>
+
+<span class="k">MOVE</span><span class="o">-</span><span class="k">CORRESPONDING</span> <span class="n">li_kna1</span> <span class="k">TO</span> <span class="n">li_knb1</span> <span class="k">KEEPING</span> <span class="k">TARGET</span> <span class="k">LINES</span><span class="p">.</span></code></pre></figure>
+
+<p>Even tough, I highly suggest using the operator style just because it offers explicit mappings.</p>
+
+<h3 id="conclusion-for-now">Conclusion… for now</h3>
+
+<p>ABAP compensates a missing standard library with additional keywords. Is this a good thing? I don’t think so. But it’s better than not having a predefined solution.
+I know there are a lot more functions, that come in handy. If you have some too - don’t hesitate texting me via email.</p>
+
+
+    </main>
+
+    <hr />
+<footer>
+    Handcrafted by lausek 2018
+</footer>
+
+    
+    </body>
+</html>
+
+

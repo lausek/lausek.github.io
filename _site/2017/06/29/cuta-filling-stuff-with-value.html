@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <title>lausek</title>
+        <link rel="icon" type="image/gif" href="/img/icon/icon.gif" />
+        <link rel="stylesheet" type="text/css" href="/css/minimal.css" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="lausek" />
+        <meta name="description" content="This is my little blog about programming - mainly in ABAP - and other computer stuff." />
+        <meta name="keywords" content="lausek, sap, abap, laurin, kirbach, lpk" />
+    </head>
+    <body>
+    
+    <header>
+    <a href="http://localhost:4000">&lcub;lausek&rcub;</a>
+    <nav>
+        
+    </nav>
+    <hr />
+</header>
+
+    
+    <main>
+        <h1>Cuta Filling Stuff With Value</h2>
+<hr />
+
+<p><code class="highlighter-rouge">VALUE</code> can create “throwaway”-objects of non-generic type in a simplified way. Furthermore, there is the possibility to prefill structures and tables in the same command. But you shouldn’t be ashamed to use the classical <code class="highlighter-rouge">DATA ... TYPE ...</code> form in certain cases - especially not when declaring one dimensional tokens and/or giving default values isn’t needed.</p>
+
+<p>Always keep in mind that your type has to be fully specified. <code class="highlighter-rouge">c, x, p, n</code> won’t work without a length specification. <code class="highlighter-rouge">string</code> is fine though.</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">DATA</span><span class="p">(</span><span class="n">w_char</span><span class="p">)</span> <span class="o">=</span> <span class="k">VALUE</span> <span class="n">c</span><span class="p">(</span> <span class="p">).</span>      <span class="c1">" error; length unknown</span>
+<span class="k">DATA</span><span class="p">(</span><span class="n">w_char</span><span class="p">)</span> <span class="o">=</span> <span class="k">VALUE</span> <span class="n">char1</span><span class="p">(</span> <span class="p">).</span>  <span class="c1">" works; length is 1</span>
+
+<span class="c1">" ... acts like ...</span>
+
+<span class="k">DATA</span> <span class="n">w_char</span> <span class="k">TYPE</span> <span class="kt">c</span> <span class="k">LENGTH</span> <span class="mi">1</span><span class="p">.</span></code></pre></figure>
+
+<p>For structures inside <code class="highlighter-rouge">VALUE</code>, we go with this syntax: <code class="highlighter-rouge">( &amp;lt;component&amp;gt; = &amp;lt;value&amp;gt; &amp;lt;component&amp;gt; = &amp;lt;value&amp;gt; ... )</code>.</p>
+
+<p>Whenever I need to enable layout saving in my SALV table, I implement it using this very useful pattern:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="n">o_layout</span><span class="o">-&amp;</span><span class="k">gt</span><span class="err">;</span><span class="n">set_key</span><span class="p">(</span> <span class="k">VALUE</span> <span class="o">#</span><span class="p">(</span> <span class="k">report</span> <span class="o">=</span> <span class="n">sy</span><span class="o">-</span><span class="n">repid</span> <span class="p">)</span> <span class="p">).</span></code></pre></figure>
+
+<h3 id="creating-tables">Creating tables</h3>
+
+<p>But thats not all. We can also use some extra syntax elements to construct internal tables. Let’s say we want to fill a select option in our program. Obviously, the old-school way would be:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="c1">" We'll need this later too</span>
+<span class="k">TYPES</span> <span class="n">t_users_tt</span> <span class="k">TYPE</span> <span class="k">RANGE</span> <span class="k">OF</span> <span class="n">uname</span><span class="p">.</span>
+
+<span class="k">DATA</span><span class="p">:</span> 
+    <span class="n">i_selopts</span> <span class="k">TYPE</span> <span class="n">t_users_tt</span><span class="p">,</span>
+    <span class="n">wa_selopt</span> <span class="k">LIKE</span> <span class="k">LINE</span> <span class="k">OF</span> <span class="n">i_selopts</span><span class="p">.</span>
+
+<span class="n">wa_selopt</span><span class="o">-</span><span class="k">sign</span>   <span class="o">=</span> <span class="s1">'I'</span><span class="p">.</span>
+<span class="n">wa_selopt</span><span class="o">-</span><span class="k">option</span> <span class="o">=</span> <span class="s1">'EQ'</span><span class="p">.</span>
+<span class="n">wa_selopt</span><span class="o">-</span><span class="k">low</span>    <span class="o">=</span> <span class="s1">'PE000001'</span><span class="p">.</span>
+<span class="k">APPEND</span> <span class="n">wa_selopt</span> <span class="k">TO</span> <span class="n">i_selopts</span><span class="p">.</span>
+
+<span class="n">wa_selopt</span><span class="o">-</span><span class="k">low</span>    <span class="o">=</span> <span class="s1">'PE000002'</span><span class="p">.</span>
+<span class="k">APPEND</span> <span class="n">wa_selopt</span> <span class="k">TO</span> <span class="n">i_selopts</span><span class="p">.</span>
+
+<span class="c1">" ...</span></code></pre></figure>
+
+<p>Stop this insanity from now on and have a look at the lazy guy’s writing style where every pair of parenthesis represents a table line:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">DATA</span><span class="p">(</span><span class="n">i_selopts</span><span class="p">)</span> <span class="o">=</span> <span class="k">VALUE</span> <span class="n">t_users_tt</span><span class="p">(</span>
+    <span class="p">(</span> <span class="k">sign</span> <span class="o">=</span> <span class="s1">'I'</span> <span class="k">option</span> <span class="o">=</span> <span class="s1">'EQ'</span> <span class="k">low</span> <span class="o">=</span> <span class="s1">'PE000001'</span> <span class="p">)</span>
+    <span class="p">(</span> <span class="k">sign</span> <span class="o">=</span> <span class="s1">'I'</span> <span class="k">option</span> <span class="o">=</span> <span class="s1">'EQ'</span> <span class="k">low</span> <span class="o">=</span> <span class="s1">'PE000002'</span> <span class="p">)</span>
+    <span class="p">(</span> <span class="k">sign</span> <span class="o">=</span> <span class="s1">'I'</span> <span class="k">option</span> <span class="o">=</span> <span class="s1">'EQ'</span> <span class="k">low</span> <span class="o">=</span> <span class="s1">'PE000003'</span> <span class="p">)</span>
+<span class="p">).</span>
+
+<span class="c1">" common parts can be moved over the parentheses</span>
+<span class="k">DATA</span><span class="p">(</span><span class="n">i_selopts</span><span class="p">)</span> <span class="o">=</span> <span class="k">VALUE</span> <span class="n">t_users_tt</span><span class="p">(</span>
+    <span class="k">sign</span> <span class="o">=</span> <span class="s1">'I'</span> <span class="k">option</span> <span class="o">=</span> <span class="s1">'EQ'</span>
+    <span class="p">(</span> <span class="k">low</span> <span class="o">=</span> <span class="s1">'PE000001'</span> <span class="p">)</span>
+    <span class="p">(</span> <span class="k">low</span> <span class="o">=</span> <span class="s1">'PE000002'</span> <span class="p">)</span>
+    <span class="p">(</span> <span class="k">low</span> <span class="o">=</span> <span class="s1">'PE000003'</span> <span class="p">)</span>
+<span class="p">).</span></code></pre></figure>
+
+<p>We can also extend existing tables - very useful when giving default values to select-options:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="c1">" # -&amp;gt; determine type automatically</span>
+<span class="k">APPEND</span> <span class="k">VALUE</span> <span class="o">#</span><span class="p">(</span> <span class="k">low</span> <span class="o">=</span> <span class="n">sy</span><span class="o">-</span><span class="n">datum</span> <span class="p">)</span>  <span class="k">TO</span> <span class="n">s_audat</span><span class="p">.</span>
+<span class="k">APPEND</span> <span class="k">VALUE</span> <span class="o">#</span><span class="p">(</span> <span class="k">low</span> <span class="o">=</span> <span class="n">sy</span><span class="o">-</span><span class="n">datum</span> <span class="p">)</span>  <span class="k">TO</span> <span class="n">s_cpudt</span><span class="p">.</span>
+<span class="k">APPEND</span> <span class="k">VALUE</span> <span class="o">#</span><span class="p">(</span> <span class="k">high</span> <span class="o">=</span> <span class="s1">'235959'</span> <span class="p">)</span> <span class="k">TO</span> <span class="n">s_cputm</span><span class="p">.</span></code></pre></figure>
+
+<h4 id="running-into-errors">Running into errors</h4>
+
+<p>So you have defined your first table type and you’re very hyped to try this articles topic out by yourself. But if you haven’t specified your key, you’ll surely run into an error saying:</p>
+
+<blockquote>
+  <p>A value of the generic type “T_MY_TABLE” cannot be constructed.</p>
+</blockquote>
+
+<p>“Hmmm. That’s disappointing. I don’t care if this makes my life easier. I’ll just continue with my working template…” - waiiiiit. This can be fixed in one simple step. Just add <code class="highlighter-rouge">WITH EMPTY KEY</code> to your table definition.</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">TYPES</span> <span class="n">t_my_table</span> <span class="k">TYPE</span> <span class="k">STANDARD</span> <span class="k">TABLE</span> <span class="k">OF</span> <span class="n">t_my_type</span><span class="p">.</span>                <span class="c1">" will produce error</span>
+<span class="k">TYPES</span> <span class="n">t_my_table</span> <span class="k">TYPE</span> <span class="k">STANDARD</span> <span class="k">TABLE</span> <span class="k">OF</span> <span class="n">t_my_type</span> <span class="k">WITH</span> <span class="k">EMPTY</span> <span class="k">KEY</span><span class="p">.</span> <span class="c1">" will work</span></code></pre></figure>
+
+<p>What does this change? It will make your type non-generic. In the end your variables get handled more like an array, without any consideration of table keys. For the future, you should train yourself to add <code class="highlighter-rouge">WITH EMPTY KEY</code> at the end of your definition. It is considered a better practice than not having dropped any word about your tables keys.</p>
+
+<h3 id="fin">Fin</h3>
+
+<p>A very interesting part of this operator is the support for table comprehensions and iterations. Not only are those also compatible with <code class="highlighter-rouge">REDUCE</code>, they have too many details for a short explanation here as well. An own article is incoming…</p>
+
+
+    </main>
+
+    <hr />
+<footer>
+    Handcrafted by lausek 2018
+</footer>
+
+    
+    </body>
+</html>
+
+

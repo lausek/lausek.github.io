@@ -1,0 +1,12 @@
+title: lausek
+author: lausek
+description: "This is my little blog about programming - mainly in ABAP - and other computer stuff."
+keywords: "lausek, sap, abap, laurin, kirbach, lpk"
+
+stylesheet: minimal.css
+collections:
+    navbar:
+        - title: "About"
+          url: "/about.html"
+        - title: "Contact"
+          url: "/contact.html"

@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <title>lausek</title>
+        <link rel="icon" type="image/gif" href="/img/icon/icon.gif" />
+        <link rel="stylesheet" type="text/css" href="/css/minimal.css" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="lausek" />
+        <meta name="description" content="This is my little blog about programming - mainly in ABAP - and other computer stuff." />
+        <meta name="keywords" content="lausek, sap, abap, laurin, kirbach, lpk" />
+    </head>
+    <body>
+    
+    <header>
+    <a href="http://localhost:4000">&lcub;lausek&rcub;</a>
+    <nav>
+        
+    </nav>
+    <hr />
+</header>
+
+    
+    <main>
+        <h1>Cuta The New Operator</h2>
+<hr />
+
+<p>Object oriented programming always felt weird in ABAP. Too many keywords for too little things. Some improvements against verbosity, especially <a href="/2017/03/13/cuta-inline-declarations.html">inline declarations</a> and shortcut operators, help developers keep their view on the important logic-part instead of the annoying writing work. Switching to Eclipse is also a good plan if you have a lot of OOP to do. Coming to terms…</p>
+
+<p>The natural way of instantiating a class would require a declaration in first place - often immediately followed by the creation call. Let’s pretend our class <code class="highlighter-rouge">lcl_friend</code> has one constructor parameter called <code class="highlighter-rouge">name</code>. We now want to get ourself a new fam. Because implicit <code class="highlighter-rouge">EXPORTING</code> arguments are not supported by <code class="highlighter-rouge">CREATE OBJECT</code>, we need to blow up our construction a bit more:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">DATA</span> <span class="n">o_my_dude</span> <span class="k">TYPE</span> <span class="k">REF</span> <span class="k">TO</span> <span class="n">lcl_friend</span><span class="p">.</span>
+
+<span class="k">CREATE</span> <span class="k">OBJECT</span> <span class="n">o_my_dude</span>
+    <span class="k">EXPORTING</span>
+        <span class="k">name</span> <span class="o">=</span> <span class="s1">`Daniel`</span><span class="p">.</span></code></pre></figure>
+
+<p>Saying we don’t have our dude reference declared yet, <code class="highlighter-rouge">NEW</code> requires the type for our <code class="highlighter-rouge">DATA</code> token. In this case the short way would be:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">DATA</span><span class="p">(</span><span class="n">o_my_dude</span><span class="p">)</span> <span class="o">=</span> <span class="k">NEW</span> <span class="n">lcl_friend</span><span class="p">(</span> <span class="s1">`Daniel`</span> <span class="p">).</span></code></pre></figure>
+
+<h3 id="not-only-for-classes">Not only for classes</h3>
+
+<p>We could create a reference for every type as long as it isn’t generic like <code class="highlighter-rouge">data</code>, <code class="highlighter-rouge">p</code> or <code class="highlighter-rouge">c</code>. A common case I personally face quite often, is creating data based on certain conditions and afterwards working with it. You could either solve it with redundant code or just do it generically.</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">DATA</span> <span class="n">o_vary</span> <span class="k">TYPE</span> <span class="k">REF</span> <span class="k">TO</span> <span class="k">data</span><span class="p">.</span> <span class="o">&amp;</span><span class="n">quot</span><span class="err">;</span> <span class="n">declare</span> <span class="k">as</span> <span class="k">REF</span> <span class="k">TO</span> <span class="k">data</span> <span class="k">first</span>
+
+<span class="n">o_vary</span> <span class="o">=</span> <span class="k">NEW</span> <span class="n">t_kna1</span><span class="p">(</span> <span class="p">).</span>
+<span class="o">&amp;</span><span class="n">quot</span><span class="err">;</span> <span class="p">...</span>
+<span class="n">o_vary</span> <span class="o">=</span> <span class="k">NEW</span> <span class="n">t_knb1</span><span class="p">(</span> <span class="p">).</span></code></pre></figure>
+
+<p>Okay, this is a very useless example as you can’t work with <code class="highlighter-rouge">o_vary</code> without assigning it to a field-symbol, but I think you get the point of it. Maybe even more useless is this:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">DATA</span><span class="p">(</span><span class="n">o_starting</span><span class="p">)</span> <span class="o">=</span> <span class="k">NEW</span> <span class="n">i</span><span class="p">(</span> <span class="mi">1</span> <span class="p">).</span>
+<span class="k">DATA</span><span class="p">(</span><span class="n">o_kill_me</span><span class="p">)</span> <span class="o">=</span> <span class="k">NEW</span> <span class="n">f</span><span class="p">(</span> <span class="p">).</span></code></pre></figure>
+
+<p>I don’t know. Maybe it helps you in some cases.</p>
+
+<h3 id="implicit-creation">Implicit creation</h3>
+
+<p>What if <code class="highlighter-rouge">o_my_dude</code> is already known to our compiler ‘cause declaring <code class="highlighter-rouge">DATA</code> at the top of your local scope is still a good practice? That eases things up even more - at least the instantiation side.</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">DATA</span> <span class="n">o_my_dude</span> <span class="k">TYPE</span> <span class="k">REF</span> <span class="k">TO</span> <span class="n">lcl_friend</span><span class="p">.</span>
+<span class="o">&amp;</span><span class="n">quot</span><span class="err">;</span> <span class="p">...</span> <span class="n">banana</span> <span class="n">banana</span> <span class="n">banana</span>
+<span class="n">o_my_dude</span> <span class="o">=</span> <span class="k">NEW</span> <span class="o">#</span><span class="p">(</span> <span class="s1">`Daniel`</span> <span class="p">).</span></code></pre></figure>
+
+<p>You can think of the <code class="highlighter-rouge">#</code> sort of like a wildcard. We already typed our variable, so the friendly, little compiler could dig deep and find it out by himself.</p>
+
+<h3 id="what-about-multiple-arguments">What about multiple arguments?</h3>
+
+<p>Sadly there nearly isn’t a case where one parameter is enough. We can simulate another one by giving our friend a greeting formula:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="o">&amp;</span><span class="n">quot</span><span class="err">;</span> <span class="p">...</span>
+<span class="k">METHODS</span>
+    <span class="n">constructor</span>
+        <span class="k">IMPORTING</span>
+            <span class="k">name</span>        <span class="k">TYPE</span> <span class="k">string</span>
+            <span class="n">greet_with</span>  <span class="k">TYPE</span> <span class="k">string</span> <span class="k">DEFAULT</span> <span class="s1">`Hello`</span><span class="p">,</span></code></pre></figure>
+
+<p>And like we would normally do it - specify them named:</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">DATA</span><span class="p">(</span><span class="n">o_my_dude</span><span class="p">)</span> <span class="o">=</span> <span class="k">NEW</span> <span class="n">lcl_friend</span><span class="p">(</span>
+    <span class="k">name</span> <span class="o">=</span> <span class="s1">`Daniel`</span>
+    <span class="n">greet_with</span> <span class="o">=</span> <span class="s1">`Jaaaa Moooooooin`</span>
+<span class="p">).</span>
+
+<span class="k">WRITE</span> <span class="n">o_my_dude</span><span class="o">-&amp;</span><span class="k">gt</span><span class="err">;</span><span class="n">say_hello</span><span class="p">(</span> <span class="p">).</span>
+<span class="o">&amp;</span><span class="n">quot</span><span class="err">;</span> <span class="o">=&amp;</span><span class="k">gt</span><span class="err">;</span> <span class="n">Jaaaa</span> <span class="n">Moooooooin</span><span class="p">,</span> <span class="n">my</span> <span class="k">name</span> <span class="k">is</span> <span class="n">Daniel</span></code></pre></figure>
+
+<p>Apparently Daniel thinks it is cool to talk in english but greet in german…</p>
+
+<figure class="highlight"><pre><code class="language-abap" data-lang="abap"><span class="k">FREE</span> <span class="n">o_my_dude</span><span class="p">.</span></code></pre></figure>
+
+
+
+    </main>
+
+    <hr />
+<footer>
+    Handcrafted by lausek 2018
+</footer>
+
+    
+    </body>
+</html>
+
+

@@ -1,0 +1,9 @@
+<header>
+    <a href="{{ site.url }}">&lcub;{{ site.title }}&rcub;</a>
+    <nav>
+        {% for item in site.collections.navbar %}
+            <a href="{{ item.url }}">{{ item.title }}</a>
+        {% endfor %}
+    </nav>
+    <hr />
+</header>
