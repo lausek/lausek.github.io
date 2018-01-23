@@ -25,10 +25,10 @@ DATA(o_my_dude) = NEW lcl_friend( `Daniel` ).
 We could create a reference for every type as long as it isn't generic like `data`, `p` or `c`. A common case I personally face quite often, is creating data based on certain conditions and afterwards working with it. You could either solve it with redundant code or just do it generically.
 
 {% highlight abap %}
-DATA o_vary TYPE REF TO data. &quot; declare as REF TO data first
+DATA o_vary TYPE REF TO data. " declare as REF TO data first
 
 o_vary = NEW t_kna1( ).
-&quot; ...
+" ...
 o_vary = NEW t_knb1( ).
 {% endhighlight %}
 
@@ -47,7 +47,7 @@ What if `o_my_dude` is already known to our compiler 'cause declaring `DATA` at 
 
 {% highlight abap %}
 DATA o_my_dude TYPE REF TO lcl_friend.
-&quot; ... banana banana banana
+" ... banana banana banana
 o_my_dude = NEW #( `Daniel` ).
 {% endhighlight %}
 
@@ -58,7 +58,7 @@ You can think of the `#` sort of like a wildcard. We already typed our variable,
 Sadly there nearly isn't a case where one parameter is enough. We can simulate another one by giving our friend a greeting formula:
 
 {% highlight abap %}
-&quot; ...
+" ...
 METHODS
     constructor
         IMPORTING
@@ -74,8 +74,8 @@ DATA(o_my_dude) = NEW lcl_friend(
     greet_with = `Jaaaa Moooooooin`
 ).
 
-WRITE o_my_dude-&gt;say_hello( ).
-&quot; =&gt; Jaaaa Moooooooin, my name is Daniel
+WRITE o_my_dude->say_hello( ).
+" => Jaaaa Moooooooin, my name is Daniel
 {% endhighlight %}
 
 Apparently Daniel thinks it is cool to talk in english but greet in german...

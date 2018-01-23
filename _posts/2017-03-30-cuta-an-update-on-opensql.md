@@ -59,7 +59,7 @@ SELECT b~bukrs, b~kunnr, a~name1 AS fullname, a~name2
   WHERE b~bukrs = '3000'
   INTO TABLE @DATA(i_data).
 
-&quot; i_data is typed! You can access each component individually!
+" i_data is typed! You can access each component individually!
 {% endhighlight %}
 
 You see: one `AS` is enough to nickname a field.
@@ -83,10 +83,10 @@ SELECT *
 > All fields from table2
 > All fields from all tables
 
-Answer: &quot;ERROR: Too many fields specified&quot; because all fields are specified even though nobody wants to select everything from every table... Now:
+Answer: "ERROR: Too many fields specified" because all fields are specified even though nobody wants to select everything from every table... Now:
 
 {% highlight abap %}
-&quot; Pfewww. Gotcha!
+" Pfewww. Gotcha!
 SELECT table1~*
     FROM table1
     JOIN table2
@@ -135,7 +135,7 @@ We can finally select stuff based on a condition inside queries 🎉. There are 
 
     - Like `COND` or `IF ... ELSEIF ... ELSE`:
     {% highlight abap %}
-    CASE &quot; nothing in this place
+    CASE " nothing in this place
         WHEN state = 1 THEN ...
         WHEN state = 2 THEN ...
         ELSE ...
@@ -160,23 +160,23 @@ If you ever wondered how to correctly (in terms of debit and credit) sum up `BSI
 {% highlight abap %}
 SELECT SUM( CASE shkzg
                 WHEN 'H' THEN dmbtr
-                WHEN 'S' THEN dmbtr * -1 &quot; negate for subtraction
+                WHEN 'S' THEN dmbtr * -1 " negate for subtraction
             END )
     FROM bsid
-    WHERE bukrs = @&lt;bukrs&gt;
-    AND kunnr = @&lt;kunnr&gt;
-    AND rebzg = @&lt;belnr&gt;
+    WHERE bukrs = @<bukrs>
+    AND kunnr = @<kunnr>
+    AND rebzg = @<belnr>
     INTO @DATA(w_payed).
 {% endhighlight %}
 
 Wanna join names without `CONCATENATE`? What do you think about this?
 
 {% highlight abap %}
-SELECT SINGLE name1 &amp;&amp; name2 AS fullname,
-              name1 &amp;&amp; 'y' AS nick
+SELECT SINGLE name1 && name2 AS fullname,
+              name1 && 'y' AS nick
     FROM kna1
     INTO @DATA(wa_somebody).
 
-WRITE: |Somebodys name is &quot;{ wa_somebody-fullname }&quot; but his friends call him &quot;{ wa_somebody-nick }&quot;|.
-&quot; =&gt; Somebodys name is &quot;Bob Bobington&quot; but his friends call him &quot;Boby&quot;
+WRITE: |Somebodys name is "{ wa_somebody-fullname }" but his friends call him "{ wa_somebody-nick }"|.
+" => Somebodys name is "Bob Bobington" but his friends call him "Boby"
 {% endhighlight %}

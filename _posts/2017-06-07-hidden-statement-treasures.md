@@ -16,8 +16,8 @@ DATA(li_params) = VALUE string_table(
 
 DATA(lw_joined) = REDUCE string(
   INIT s = ``
-  FOR &lt;x&gt; IN li_params
-  NEXT s = s &amp;&amp; &lt;x&gt;
+  FOR <x> IN li_params
+  NEXT s = s &amp;&amp; <x>
 ).
 {% endhighlight %}
 
@@ -25,14 +25,14 @@ To my luck, I recently had a look at the documentation which exposed two additio
 
 {% highlight abap %}
 CONCATENATE LINES OF li_params INTO DATA(lw_joined).
-" =&gt; p=1s=upq=%23testp=a0s7ras213d23o4ij87
+" => p=1s=upq=%23testp=a0s7ras213d23o4ij87
 {% endhighlight %}
 
 Even better: The `SEPARATED BY` addition will insert a string between and **only between** lines. Fits perfectly whenever you want to join GET parameters. My generic snippet would have required checks on `sy-tabix` - horrible.
 
 {% highlight abap %}
 CONCATENATE LINES OF li_params INTO DATA(lw_joined) SEPARATED BY '&amp;'.
-" =&gt; p=1&amp;s=up&amp;q=%23test&amp;p=a0s7ras213d23o4ij87 
+" => p=1&amp;s=up&amp;q=%23test&amp;p=a0s7ras213d23o4ij87 
 {% endhighlight %}
 
 Still, this approach is overly verbose compared to Pythons `'&amp;'.join(params)` but comparing expressiveness with ABAP in general is very unfair. ;-)

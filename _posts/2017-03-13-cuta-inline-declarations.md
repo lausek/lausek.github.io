@@ -5,7 +5,7 @@ layout: post
 Since ABAP 7.40 has been introduced, we are lucky to have two very neat operators: `DATA` and `FIELD-SYMBOL`. Both can be used with this syntax:
 
 {% highlight abap %}                       
-&lt;operator&gt;(&lt;variable_name&gt;) = &lt;some_val&gt;`
+<operator>(<variable_name>) = <some_val>
 {% endhighlight %}                                            
 
 Direct assigments like the example above are only supported by `DATA`, but you could also place them...
@@ -49,14 +49,14 @@ ENDLOOP.
 *--------------------------------------------------
 
 * Old
-FIELD-SYMBOL &lt;fs_line&gt; LIKE LINE OF i_table.
-LOOP AT i_table ASSIGNING &lt;fs_line&gt;.
-    " work with &lt;fs_line&gt;
+FIELD-SYMBOL <fs_line> LIKE LINE OF i_table.
+LOOP AT i_table ASSIGNING <fs_line>.
+    " work with <fs_line>
 ENDLOOP.
 
 * New
-LOOP AT i_table ASSIGNING FIELD-SYMBOL(&lt;fs_line&gt;).
-    " work with &lt;fs_line&gt;
+LOOP AT i_table ASSIGNING FIELD-SYMBOL(<fs_line>).
+    " work with <fs_line>
 ENDLOOP.
 {% endhighlight %}
 

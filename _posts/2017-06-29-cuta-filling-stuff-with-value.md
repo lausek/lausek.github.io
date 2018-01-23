@@ -15,12 +15,12 @@ DATA(w_char) = VALUE char1( ).  " works; length is 1
 DATA w_char TYPE c LENGTH 1.
 {% endhighlight %}
 
-For structures inside `VALUE`, we go with this syntax: `( &lt;component&gt; = &lt;value&gt; &lt;component&gt; = &lt;value&gt; ... )`.
+For structures inside `VALUE`, we go with this syntax: `( <component> = <value> <component> = <value> ... )`.
 
 Whenever I need to enable layout saving in my SALV table, I implement it using this very useful pattern:
 
 {% highlight abap %}
-o_layout-&gt;set_key( VALUE #( report = sy-repid ) ).
+o_layout->set_key( VALUE #( report = sy-repid ) ).
 {% endhighlight %}
 
 ### Creating tables
@@ -67,7 +67,7 @@ DATA(i_selopts) = VALUE t_users_tt(
 We can also extend existing tables - very useful when giving default values to select-options:
 
 {% highlight abap %}
-" # -&gt; determine type automatically
+" # -> determine type automatically
 APPEND VALUE #( low = sy-datum )  TO s_audat.
 APPEND VALUE #( low = sy-datum )  TO s_cpudt.
 APPEND VALUE #( high = '235959' ) TO s_cputm.
