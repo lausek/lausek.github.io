@@ -4,6 +4,7 @@ description: "This is my little blog about programming - mainly in ABAP - and ot
 keywords: "lausek, sap, abap, laurin, kirbach, lpk"
 
 stylesheet: minimal.css
+highlight: highlight.css
 navbar:
     - title: "About"
       url: "/about.html"
