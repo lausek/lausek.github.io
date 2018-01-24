@@ -1,7 +1,33 @@
+body {
+    font-family: Arial;
+}
+
+a {
+    text-decoration: none;
+}
+
 header {
     font-size: x-large;
 }
 
 footer {
     text-align: center;
+}
+
+h1,
+header {
+    font-family: Helvetica;
+}
+
+pre code {
+    display: block;
+    padding: 5px;
+    overflow-x: auto;
+    background-color: #E8E8E8;
+}
+
+blockquote {
+    padding: 5px;
+    border-left: 5px solid #ffc14f;
+    background-color: #F5F5AC;
 }
