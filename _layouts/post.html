@@ -6,3 +6,14 @@ layout: default
 <hr />
 
 {{ page.content }}
+
+<hr />
+
+<aside>
+{% if page.next != nil %}
+    <span><a href="{{ page.next.url }}">&lt; {{ page.next.title }}</a></span>
+{% endif %}
+{% if page.previous != nil %}
+    <span><a href="{{ page.previous.url }}">{{ page.previous.title }} &gt;</a></span>
+{% endif %}
+</aside>

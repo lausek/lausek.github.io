@@ -19,6 +19,15 @@ header {
     font-family: Helvetica;
 }
 
+aside {
+    text-align: center;
+}
+
+aside span {
+    display: block;
+    padding: 5px;
+}
+
 pre code {
     display: block;
     padding: 5px;
