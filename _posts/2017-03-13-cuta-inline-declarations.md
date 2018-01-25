@@ -4,7 +4,7 @@ layout: post
 
 Since ABAP 7.40 has been introduced, we are lucky to have two very neat operators: `DATA` and `FIELD-SYMBOL`. Both can be used with this syntax:
 
-{% highlight abap %}                       
+{% highlight abap %}
 <operator>(<variable_name>) = <some_val>
 {% endhighlight %}                                            
 
@@ -21,7 +21,7 @@ The compiler will insert a declaration right before calls to declaration operato
 
 Following statements create exact the same variables:
 
-{% highlight abap %}                                            
+{% highlight abap %}
 " TYPE:
 DATA w_num  TYPE i VALUE 10.                " I(4)
 DATA w_char TYPE c VALUE 'Test' LENGTH 4.   " C(4)

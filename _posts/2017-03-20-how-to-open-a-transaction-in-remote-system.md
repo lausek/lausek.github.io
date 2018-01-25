@@ -5,7 +5,9 @@ layout: post
 Once my task was to write a report which compares master data (customers, vendors) from the current system to another one over RFC. Hotspot jumps into maintenance views were also required...
 
 > ***le colleague testing my program***
-> **colleague:** When I click on this, FD03 doesn't open in <remote_system_xy>
+>
+> **colleague:** When I click on this, FD03 doesn't open in &lt;remote_system_xy&gt;
+>
 > **me:** lol yeah... and??
 
 I bet you would have had the same thoughts if you were in my place. At first I really felt like my coworker didn't get, that this would require a call to a whole other system, but apparently it is no problem to do such a thing.
