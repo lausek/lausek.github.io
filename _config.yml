@@ -5,8 +5,3 @@ keywords: "lausek, sap, abap, laurin, kirbach, lpk"
 
 stylesheet: minimal.css
 highlight: highlight.css
-navbar:
-    - title: "About"
-      url: "/about.html"
-    - title: "Contact"
-      url: "/contact.html"
