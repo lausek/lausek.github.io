@@ -5,3 +5,6 @@ keywords: "lausek, sap, abap, laurin, kirbach, lpk"
 
 stylesheet: minimal.css
 highlight: highlight.css
+
+sass:
+    style: compressed
