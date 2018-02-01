@@ -10,9 +10,9 @@ Once my task was to write a report which compares master data (customers, vendor
 >
 > **me:** lol yeah... and??
 
-I bet you would have had the same thoughts if you were in my place. At first I really felt like my coworker didn't get, that this would require a call to a whole other system, but apparently it is no problem to do such a thing.
+I bet you would have had the same thoughts if you were in my place. At first I really felt like my coworker didn't get, that this would require a call to a whole other system, but apparently it is no problem to do such a thing. You probably won't find a system that doesn't support function module `RFC_CALL_TRANSACTION_USING` - so don't worry about backwards compatibility.
 
-You probably won't find a system that doesn't support function module `RFC_CALL_TRANSACTION_USING` - so don't worry about backwards compatibility. The call itself is very intuitive once you know that navigating works via batch input.
+The call itself is very intuitive once you know that navigating works via batch input.
 
 {% highlight abap %}
 " Table for errors (required)

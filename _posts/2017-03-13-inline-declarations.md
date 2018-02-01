@@ -13,9 +13,7 @@ Direct assigments like the example above are only supported by `DATA`, but you c
  - after `.. INTO` statements or as the target of an `IMPORTING` parameter
  - after `ASSIGN`/`ASSIGNING` statements (`READ TABLE`, `LOOP AT`)
 
-The type of the declarable symbol has to be known at compile-time, because... type-checking. Inline declarations aren't dynamic - they are fully typed and as such could be checked by a computer.
-
-The compiler will insert a declaration right before calls to declaration operators:
+The type of the declarable symbol has to be known at compile-time, because... type-checking. Inline declarations aren't dynamic - they are fully typed and as such could be checked by a computer. The compiler will insert a declaration right before calls to declaration operators:
 
 ![insert](/img/assets/insert.png)
 
