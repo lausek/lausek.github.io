@@ -3,24 +3,32 @@
 ---
 
 body {
-    font-family: Arial;
+    font-family: Verdana, Helvetica;
+}
+
+li {
+    margin: 10px;
 }
 
 a {
     text-decoration: none;
 }
 
-header {
-    font-size: x-large;
+nav a {
+    padding: 5px;
 }
 
 footer {
+    font-size: 12px;
     text-align: center;
 }
 
-h1,
-header {
-    font-family: Helvetica;
+main {
+    line-height: 1.5;
+}
+
+p {
+    padding: 10px;
 }
 
 aside {
