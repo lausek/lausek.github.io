@@ -79,9 +79,9 @@ SELECT *
 
 > Little guessing game: What could be the output of above code?
 >
-> All fields from table1
-> All fields from table2
-> All fields from all tables
+> - All fields from table1
+> - All fields from table2
+> - All fields from all tables
 
 Answer: "ERROR: Too many fields specified" because all fields are specified even though nobody wants to select everything from every table... Now:
 
