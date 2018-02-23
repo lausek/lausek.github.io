@@ -14,9 +14,9 @@ layout: post
 
 If you want to annoy people online but you have nothing relevant to say, just use the button below. Those phrases should perfectly annoy any thinking person on this planet.
 
-<blockquote id="output">We need the wall!</blockquote>
-
 <button id="trigger">Next one!</button>
+
+<blockquote id="output">&lt;adjective&gt; &lt;daemon&gt; must/should/have to &lt;action&gt; because &lt;reason&gt;</blockquote>
 
 ###### *Nothing in this textbox represents my opinion. Not even the slightest.*
 
