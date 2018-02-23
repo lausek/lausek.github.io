@@ -28,7 +28,7 @@
                 "muslims",
                 "snowflakes",
                 "mexicans",
-                "little rocket man",
+                "little rocket men",
                 "blacks",
                 "activists",
                 "immigrants",
@@ -54,7 +54,6 @@
             ],
             reasons: [
                 "communism",
-                "zionism",
                 "of their fake media",
                 "of their lifestyle",
                 "of drugs",
