@@ -12,7 +12,7 @@ layout: post
    }
 </style>
 
-If you want to annoy people online but you have nothing relevant to say, just use the button below. Those phrases should perfectly annoy any thinking person on this planet.
+If you want to annoy people online but you have nothing relevant to say, just use the button below. Those phrases should perfectly bother any thinking person on this planet.
 
 <button id="trigger">Next one!</button>
 
