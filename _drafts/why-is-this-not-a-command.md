@@ -2,11 +2,13 @@
 layout: post
 ---
 
-Have you ever wanted to delete from a table by a list of indizes? That's something you face while working with ALVs. So, recently I discovered one of these commands SAP doesn't want you to use. At least they state at the top of their documentation. Yet, I wondered why they are hiding it, because there have been many occurrences I wanted to have that functionality.
+Have you ever wanted to delete from a table by a list of indizes? You'll often face this while working with ALVs. 
+
+So, recently I was on my tour through the depts of the SAP docu and I discovered one of these "internal developers" commands. The document explicitly states that we should **NOT** use it - so lets use it.
 
     SYSTEM-CALL ITAB_DELETE_LIST TABLE itab INDEX-LIST itab2.
 
-It becomes especially powerful when working with ALV. Maybe you want to delete the marked lines. That's one problem I have faced recently. The thing is, that manually looping over a table of indizes mashes up the order. But, we could fix that by sorting it.
+It becomes especially powerful when working with ALV. Maybe you want to delete the marked lines. The thing is, that manually looping over a table of indizes mashes up the order. But, we could fix that by sorting it.
 	
 	DATA(li_index) = lo_table->get_selections( )->get_selected_rows( ).
 	
