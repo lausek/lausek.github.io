@@ -2,7 +2,7 @@
 layout: post
 ---
 
-Object oriented programming always felt weird in ABAP. Too many keywords for too little things. Some improvements against verbosity, especially [inline declarations](/2017/03/13/cuta-inline-declarations.html) and shortcut operators, help developers keep their view on the important logic-part instead of the annoying writing work. Switching to Eclipse is also a good plan if you have a lot of OOP to do. Coming to terms...
+Object oriented programming always felt weird in ABAP. Too many keywords for too little things. Some improvements against verbosity, especially [inline declarations](/2017/03/13/inline-declarations.html) and shortcut operators, help developers keep their view on the important logic-part instead of the annoying writing work. Switching to Eclipse is also a good plan if you have a lot of OOP to do. Coming to terms...
 
 The natural way of instantiating a class would require a declaration in first place - often immediately followed by the creation call. Let's pretend our class `lcl_friend` has one constructor parameter called `name`. We now want to get ourself a new fam. Because implicit `EXPORTING` arguments are not supported by `CREATE OBJECT`, we need to blow up our construction a bit more:
 
