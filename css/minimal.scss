@@ -19,7 +19,12 @@ li {
 }
 
 a {
+    color: #232323;
     text-decoration: none;
+}
+
+p a {
+    text-decoration: underline;
 }
 
 header {
