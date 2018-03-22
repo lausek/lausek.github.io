@@ -3,13 +3,17 @@ layout: post
 ---
 
 Transactions like `FB03` (*post documents*) offer you the possibility to attach files to your document. 
-SAP Standard doesn't tell you immediately if there are any attachments already appended. 
-To check this, you would have to manually open the attachment list via the button beside your GUI title.
+SAP Standard doesn't tell you immediately if there are any attachments already appended. To check this, you would have to manually open the attachment list via the button beside your GUI title. 
 
 ![the GOS button](../img/assets/gos_button_empty.jpg)
 
-We also came to the conclusion that adding such a functionality to our transactions would be great for the workflow. 
-So, I sat down and started debugging a bit. The class behind the mysterious button is named `CL_GOS_MANAGER`. A quick look inside
+We also came to the conclusion that adding such a functionality to our transactions would be great for the workflow.
+
+### Implementation
+
+> What we do now, will influence every transaction that uses this button! I didn't add any branches for excluding tcodes, but you are free to do that of course.
+
+I sat down and started debugging a bit. The class behind the mysterious button is named `CL_GOS_MANAGER`. A quick look inside
 unveils the `GET_ICON_NAME` method. This is the point we want to extend. Actually, all of our changes will be done in a class enhancement so there is no need to modify SAP coding.
 
 First, we need to open the class in display mode via `SE24`. We then choose *Class* -> *Enhance*.
@@ -21,7 +25,7 @@ Now you need to name your enhancement and assign a package. A success message in
 A pushbutton appears in the "Post-Exit" column inside the methods tab. Hitting it brings you to your local class where you can implement your customizing. The local class receives a reference to the object it is handling by default inside the `core_object` attribute. Before we start hacking stuff into our methods, we first want to tweak our classes definition a little bit.
 
 ``` abap
-CLASS lcl_/wrp/ei_lcb_ext_all_adico DEFINITION.
+CLASS lcl_z_ei_lcb_ext_all_adico DEFINITION.
 	
 	PUBLIC SECTION.
 		" generated stuff ...
@@ -105,7 +109,7 @@ ENDMETHOD.
 But before any handler is invoked, `GET_ICON_NAME` (the method we enhanced) is executed. We do some very important setup inside of it.  
 
 ``` abap
-METHOD ipo_/wrp/ei_lcb_ext_all_adico~get_icon_name.
+METHOD ipo_z_ei_lcb_ext_all_adico~get_icon_name.
 	
 	" little IS BOUND check never hurt nobody
 	IF me->core_object IS NOT BOUND.
@@ -141,6 +145,7 @@ METHOD get_icon.
 		li_counts      TYPE sgs_t_acnt,
 		lw_attachments TYPE i.
 	
+	" this method also offers more parameters for ignoring notes, url, etc.
 	li_counts = cl_gos_attachment_query=>count_for_object(
       is_object = wa_link
       " activate this, if you want to read archived documents too
@@ -163,45 +168,49 @@ METHOD get_icon.
 ENDMETHOD.
 ```
 
+#### Reading archive links
+
 Now, you maybe face the problem, that archived documents aren't considered by this coding. I also had that issue and I fixed it by expanding my method with function module `ARCHIV_GET_CONNECTIONS`.
 
 ``` abap
 	
-	" previous source code ...
+" previous source code ...
+
+DATA:
+	li_archived 	TYPE STANDARD TABLE OF toav0 WITH EMPTY KEY,
+	lwa_linkcopy  TYPE sibflporb,
 	
-	DATA:
-		li_archived 	TYPE STANDARD TABLE OF toav0 WITH EMPTY KEY,
-		lwa_linkcopy  TYPE sibflporb,
-		
-	" our link needs to be modified if we 
-	" read finance document positions
-	lwa_linkcopy = SWITCH #(
-		wa_link-typeid
-		WHEN 'BSEG' THEN VALUE #(
-			typeid = 'BKPF'
-			instid = wa_link-instid(18)
-		)
-		ELSE wa_link
-	).
-	
-	CALL FUNCTION 'ARCHIV_GET_CONNECTIONS'
-		EXPORTING
-			objecttype  = CONV saeanwdid( lwa_linkcopy-typeid )
-			object_id   = CONV saeobjid( lwa_linkcopy-instid )
-		TABLES
-			connections = li_archived
-		EXCEPTIONS
-			OTHERS      = 1.
-	
-	ADD lines( li_archived ) TO lw_attachments.
-	
-	" setting rw_icon here
+" our link needs to be modified if we 
+" read finance document positions
+lwa_linkcopy = SWITCH #(
+	wa_link-typeid
+	WHEN 'BSEG' THEN VALUE #(
+		typeid = 'BKPF'
+		instid = wa_link-instid(18)
+	)
+	ELSE wa_link
+).
+
+CALL FUNCTION 'ARCHIV_GET_CONNECTIONS'
+	EXPORTING
+		objecttype  = CONV saeanwdid( lwa_linkcopy-typeid )
+		object_id   = CONV saeobjid( lwa_linkcopy-instid )
+	TABLES
+		connections = li_archived
+	EXCEPTIONS
+		OTHERS      = 1.
+
+ADD lines( li_archived ) TO lw_attachments.
+
+" setting rw_icon here
 ```
 
 ### Testing
+
+![a gif of our implementation in action](../img/assets/gos_in_action.gif)
 
 ### Conclusion
 
 I invested a lot of time into this and it always felt like a hack. The documentation was poor, I had a lot of trouble with my event handler and visibility of class members.
 
-You can read the whole script [here]().
+You can read the whole script [here](../other/gos-icon-enhancement.md).
