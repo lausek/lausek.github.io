@@ -9,20 +9,11 @@ You can find me on [GitHub](https://github.com/lausek).
 
 ---
 
-### Languages...
+**At day:**
+Losing my last nerves for Windows 8, SAP/ABAP
 
-#### ... I'm able to speak
+**At night:**
+Making my Debian work, write some PHP/Java/Rust
 
-    German, English
-
-#### ... I'm using effectively
-
-    ABAP, Python, JavaScript, PHP
-
-#### ... I already got familiar with
-
-    Rust, C#, C, Java, Haskell
-
-#### ... I'm planning to learn some day
-    
-    Go, Pony, Lisp, proper C/C++, some Assembly
+**Sometimes:**
+Football
