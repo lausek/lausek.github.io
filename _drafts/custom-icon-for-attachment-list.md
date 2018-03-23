@@ -200,7 +200,7 @@ CALL FUNCTION 'ARCHIV_GET_CONNECTIONS'
     EXCEPTIONS
         OTHERS      = 1.
 
-	lw_attachments = lw_attachments + lines( li_archived ).
+lw_attachments = lw_attachments + lines( li_archived ).
 
 " setting rw_icon here
 ```
