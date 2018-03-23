@@ -52,18 +52,19 @@ CLASS lcl_z_ei_lcb_ext_all_adico IMPLEMENTATION.
                 EXPORTING
                     ip_service_name   = 'VIEW_ATTA'
                 IMPORTING
-                    es_service        = rwa_service
+                    es_service        = DATA(lwa_atta_list)
                 EXCEPTIONS
                     service_not_found = 1
             ).
     
-        " check if we got the service we wanted
-        IF lwa_atta_list-service IS BOUND.
-            TRY.
-                SET HANDLER on_commit_required 
-                    FOR CAST cl_gos_srv_attachment_list( lwa_atta_list-service ).
-            CATCH cx_sy_move_cast_error.
-            ENDTRY.
+	        " check if we got the service we wanted
+	        IF lwa_atta_list-service IS BOUND.
+	            TRY.
+	                SET HANDLER on_commit_required 
+	                    FOR CAST cl_gos_srv_attachment_list( lwa_atta_list-service ).
+	            CATCH cx_sy_move_cast_error.
+	            ENDTRY.
+	        ENDIF.
         ENDIF.
     ENDMETHOD.
     
@@ -106,13 +107,12 @@ CLASS lcl_z_ei_lcb_ext_all_adico IMPLEMENTATION.
             EXCEPTIONS
                 OTHERS      = 1.
     
-        ADD lines( li_archived ) TO lw_attachments.
+        lw_attachments = lw_attachments + lines( li_archived ).
     
         rw_icon = COND #(
             WHEN 0 < lw_attachments THEN c_attachments_set
             ELSE c_none_set
         ).
-    
     ENDMETHOD.
     
     METHOD on_canceled.
