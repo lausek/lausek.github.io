@@ -5,4 +5,4 @@ layout: default
 
 ![alt](/img/assets/obsadr.jpg)
 
-(Verfremdet, Danke Magnus!)
+####### *Verfremdet, Danke Magnus!*
