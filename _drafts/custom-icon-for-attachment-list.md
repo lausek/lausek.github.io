@@ -7,7 +7,7 @@ SAP Standard doesn't tell you immediately if there are any attachments already a
 
 ![the GOS button](../img/assets/gos_button_empty.jpg)
 
-We also came to the conclusion that adding such a functionality to our transactions would be great for the workflow.
+We came to the conclusion that another icon in this place would be great for the workflow.
 
 ### Implementation
 
@@ -20,9 +20,9 @@ First, we need to open the class in display mode via `SE24`. We then choose *Cla
 
 ![the GOS button](../img/assets/gos_enhance_class.jpg)
 
-Now you need to name your enhancement and assign a package. A success message in the info bar tells you, that your enhancement was created. This enables you to select *Edit* -> *Enhancement Operations* -> *Insert Post-Method* after you positioned your cursor on the `GET_ICON_NAME` function. Also confirm that you want to have access to private members of `CL_GOS_MANAGER` - I swear we won't violate OOP laws. 
+Now you need to name your enhancement and assign a package. A success message in the info bar tells you, that your enhancement was created. This enables you to select *Edit* -> *Enhancement Operations* -> *Insert Post-Method* after you positioned your cursor on the `GET_ICON_NAME` function. Also confirm that you want to have access to private members of `CL_GOS_MANAGER` - I swear we won't violate OOP laws. 😉
 
-A pushbutton appears in the "Post-Exit" column inside the methods tab. Hitting it brings you to your local class where you can implement your customizing. The local class receives a reference to the object it is handling by default inside the `core_object` attribute. Before we start hacking stuff into our methods, we first want to tweak our classes definition a little bit.
+A pushbutton appears in the "Post-Exit" column inside the methods tab. Hitting it brings you to your local class where you can implement your customizing. The local class receives a reference to the object it is handling by default inside the `core_object` attribute. Before we start hacking stuff into our methods, we first want to tweak our class definition a little bit.
 
 ``` abap
 CLASS lcl_z_ei_lcb_ext_all_adico DEFINITION.
@@ -86,7 +86,6 @@ have into your initialisation method.
 	    	CATCH cx_sy_move_cast_error.
 	    	ENDTRY.
 	    ENDIF.
-		
 	ENDIF.
 ```
 
@@ -200,7 +199,7 @@ CALL FUNCTION 'ARCHIV_GET_CONNECTIONS'
 	EXCEPTIONS
 		OTHERS      = 1.
 
-ADD lines( li_archived ) TO lw_attachments.
+	lw_attachments = lw_attachments + lines( li_archived ).
 
 " setting rw_icon here
 ```
