@@ -57,14 +57,14 @@ CLASS lcl_z_ei_lcb_ext_all_adico IMPLEMENTATION.
                     service_not_found = 1
             ).
     
-	        " check if we got the service we wanted
-	        IF lwa_atta_list-service IS BOUND.
-	            TRY.
-	                SET HANDLER on_commit_required 
-	                    FOR CAST cl_gos_srv_attachment_list( lwa_atta_list-service ).
-	            CATCH cx_sy_move_cast_error.
-	            ENDTRY.
-	        ENDIF.
+            " check if we got the service we wanted
+            IF lwa_atta_list-service IS BOUND.
+                TRY.
+                    SET HANDLER on_commit_required 
+                        FOR CAST cl_gos_srv_attachment_list( lwa_atta_list-service ).
+                CATCH cx_sy_move_cast_error.
+                ENDTRY.
+            ENDIF.
         ENDIF.
     ENDMETHOD.
     
