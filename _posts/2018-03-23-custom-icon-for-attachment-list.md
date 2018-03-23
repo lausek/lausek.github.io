@@ -3,7 +3,7 @@ layout: post
 ---
 
 Transactions like `FB03` (*post documents*) offer you the possibility to attach files to your document. 
-SAP Standard doesn't tell you immediately if there are any attachments already appended. To check this, you would have to manually open the attachment list via the button beside your GUI title. 
+Standard SAP doesn't tell you immediately if there are any attachments already appended. To check this, you would have to manually open the attachment list via the button beside your GUI title. 
 
 ![the GOS button](/img/assets/gos_button_empty.jpg)
 
@@ -211,6 +211,6 @@ lw_attachments = lw_attachments + lines( li_archived ).
 
 ### Conclusion
 
-I invested a lot of time into this and it always felt like a hack. The documentation was poor, I had a lot of trouble with my event handler and visibility of class members.
+Even though I didn't touch protected code, this thing felt like a total hack and I don't want to do something like it ever again. 
 
 You can read the whole script [here](/extra/gos-icon-enhancement.html).
