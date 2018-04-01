@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: hardware
 ---
 
 In my time at Hannover, my ZTE Blade L6 (yet another crappy phone) suddenly decided to live the life of a free smartphone and do whatever it wants. Without a portable navigation and communication device, I would have been lost.

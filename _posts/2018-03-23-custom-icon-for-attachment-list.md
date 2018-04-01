@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: sap abap
 ---
 
 Transactions like `FB03` (*post documents*) offer you the possibility to attach files to your document. 

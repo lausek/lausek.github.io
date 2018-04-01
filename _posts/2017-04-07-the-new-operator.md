@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: abap
 ---
 
 Object oriented programming always felt weird in ABAP. Too many keywords for too little things. Some improvements against verbosity, especially [inline declarations](/2017/03/13/inline-declarations.html) and shortcut operators, help developers keep their view on the important logic-part instead of the annoying writing work. Switching to Eclipse is also a good plan if you have a lot of OOP to do. Coming to terms...

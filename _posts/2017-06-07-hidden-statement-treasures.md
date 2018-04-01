@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: abap
 ---
 
 Have you already experienced this one moment when you discover a feature inside abap docs, you have never ever seen? The feelings will be even better if it provides a standard solution to a problem you are facing quite often. In this post, I want to share some of my favorites.

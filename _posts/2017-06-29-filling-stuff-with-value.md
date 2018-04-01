@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: abap
 ---
 
 `VALUE` can create "throwaway"-objects of non-generic type in a simplified way. Furthermore, there is the possibility to prefill structures and tables in the same command. But you shouldn't be ashamed to use the classical `DATA ... TYPE ...` form in certain cases - especially not when declaring one dimensional tokens and/or giving default values isn't needed.

@@ -1,5 +1,6 @@
 ﻿---
 layout: post
+tags: abap
 ---
 
 ABAP offers three different symbols for declaring string- or char-like-variables. Using them wrong is easy.

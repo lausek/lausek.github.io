@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: abap
 ---
 
 Once my task was to write a report which compares master data (customers, vendors) from the current system to another one over RFC. Hotspot jumps into maintenance views were also required...

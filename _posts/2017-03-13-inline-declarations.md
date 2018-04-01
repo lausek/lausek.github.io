@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: abap
 ---
 
 Since ABAP 7.40 has been introduced, we are lucky to have two very neat operators: `DATA` and `FIELD-SYMBOL`. Both can be used with this syntax:

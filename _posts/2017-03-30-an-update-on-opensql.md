@@ -1,5 +1,6 @@
 ﻿---
 layout: post
+tags: abap
 ---
 
 **Note:** All these things require ABAP 7.40 SP05 or higher!
