@@ -2,7 +2,7 @@
 layout: script
 ---
 
-``` abap
+{% highlight abap %}
 CLASS lcl_z_ei_lcb_ext_all_adico DEFINITION DEFERRED.
 CLASS cl_gos_manager DEFINITION LOCAL FRIENDS lcl_z_ei_lcb_ext_all_adico.
 CLASS lcl_z_ei_lcb_ext_all_adico DEFINITION.
@@ -155,4 +155,4 @@ CLASS lcl_z_ei_lcb_ext_all_adico IMPLEMENTATION.
         rv_icon_name = me->core_object->go_icon_name = get_icon( ). 
     ENDMETHOD.
 ENDCLASS.
-```
+{% endhighlight %}
