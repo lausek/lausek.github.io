@@ -11,6 +11,8 @@ tags:
     - hardware
 
 collections:
+    tagged:
+        output: true
     extra:
         output: true
 
