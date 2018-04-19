@@ -174,6 +174,8 @@ ENDMETHOD.
 
 Now, you maybe face the problem, that archived documents aren't considered by this coding. I also had that issue and I fixed it by expanding my method with function module `ARCHIV_GET_CONNECTIONS`.
 
+> You should add a check around 'ARCHIV_GET_CONNECTIONS', because typeid and instid can be empty in some transactions.
+
 ``` abap
 " previous source code ...
 
@@ -181,25 +183,28 @@ DATA:
     li_archived   TYPE STANDARD TABLE OF toav0 WITH EMPTY KEY,
     lwa_linkcopy  TYPE sibflporb,
     
-" our link needs to be modified if we 
-" read finance document positions
-lwa_linkcopy = SWITCH #(
-    wa_link-typeid
-    WHEN 'BSEG' THEN VALUE #(
-        typeid = 'BKPF'
-        instid = wa_link-instid(18)
-    )
-    ELSE wa_link
-).
-
-CALL FUNCTION 'ARCHIV_GET_CONNECTIONS'
-    EXPORTING
-        objecttype  = CONV saeanwdid( lwa_linkcopy-typeid )
-        object_id   = CONV saeobjid( lwa_linkcopy-instid )
-    TABLES
-        connections = li_archived
-    EXCEPTIONS
-        OTHERS      = 1.
+IF lwa_linkcopy-typeid IS NOT INITIAL
+AND lwa_linkcopy-instid IS NOT INITIAL.
+    " our link needs to be modified if we 
+    " read finance document positions
+    lwa_linkcopy = SWITCH #(
+        wa_link-typeid
+        WHEN 'BSEG' THEN VALUE #(
+            typeid = 'BKPF'
+            instid = wa_link-instid(18)
+        )
+        ELSE wa_link
+    ).
+    
+    CALL FUNCTION 'ARCHIV_GET_CONNECTIONS'
+        EXPORTING
+            objecttype  = CONV saeanwdid( lwa_linkcopy-typeid )
+            object_id   = CONV saeobjid( lwa_linkcopy-instid )
+        TABLES
+            connections = li_archived
+        EXCEPTIONS
+            OTHERS      = 1.
+ENDIF.
 
 lw_attachments = lw_attachments + lines( li_archived ).
 

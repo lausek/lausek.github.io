@@ -9,6 +9,7 @@ module Jekyll
             self.process(@tag)
             self.read_yaml(base, 'index.md')
             self.data['title'] = "#{tag}"
+            self.data['permalink'] = "/#{dir}/#{tag}.html"
             self.data['pages'] = []
             self.content = '{% include list.html pages=page.pages %}'
 
@@ -24,6 +25,7 @@ module Jekyll
         safe true
 
         def generate(site)
+            return
             dir = site.config['tags_dir']
             site.config['tags'].each_entry do |tag|
                 site.pages << TagsPage.new(site, site.source, dir, tag) 
