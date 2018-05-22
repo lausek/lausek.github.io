@@ -5,6 +5,18 @@
 body {
     color: #3e3e3e;
     font-family: Verdana, Helvetica;
+} 
+
+#box-cookie-warning {
+    height:auto;
+    padding:10px;
+    margin-top:10px;
+    vertical-align:middle;
+    background-color:red;
+}
+
+#box-confirm-cookie {
+    float:right;
 }
 
 @media (min-width: 850px) { 
