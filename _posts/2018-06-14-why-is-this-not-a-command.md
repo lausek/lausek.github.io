@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: abap
 ---
 
 Have you ever wanted to delete from a table by a list of indizes? You'll often face this while working with ALVs. 
