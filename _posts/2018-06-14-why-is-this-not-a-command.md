@@ -31,5 +31,3 @@ SYSTEM-CALL ITAB_DELETE_LIST TABLE li_data INDEX-LIST li_index NO-CHECK.
 ```
 
 When calling this, you'll have to be absolutely sure, that the index you are trying to delete exists. If it doesn't, a kernel error is raised.
-    
-### Performance
