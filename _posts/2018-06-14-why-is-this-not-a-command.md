@@ -25,7 +25,7 @@ LOOP AT li_index
 ENDLOOP.
 ```
 
-In this example, the whole thing could be replaced by one statement and we can also add `NO-CHECK` if the index table is already sorted in ascending order. Just keep in mind, that this will mess up your order then.
+In this example, the whole thing could be replaced by one statement and we can also add `NO-CHECK` if the index table is already sorted in ascending order.
 
 ``` abap
 SYSTEM-CALL ITAB_DELETE_LIST TABLE li_data INDEX-LIST li_index NO-CHECK.
