@@ -3,7 +3,7 @@ layout: post
 tags: abap
 ---
 
-**TL; DR**: Use `IS INSTANCE OF` for a single check and `CASE TYPE OF` for multiple class or interface checks.
+**TLDR**: Use `IS INSTANCE OF` for a single check and `CASE TYPE OF` for multiple class or interface checks.
 
 ```abap
 DATA(o_bj) = NEW lcl_child( ).
@@ -49,15 +49,13 @@ These new commands make dynamic programming with RTTI way smoother. Whenever I n
 
 ```abap
 TRY.
-
         DATA(lo_structdescr) = CAST cl_abap_structdescr( io_descr ).
         "... Do something
-
+        
     CATCH cx_sy_move_cast_error.
-
         DATA(lo_elemdescr) = CAST cl_abap_elemdescr( io_descr ).
         "... Do something else
-
+        
 ENDTRY.
 ```
 
