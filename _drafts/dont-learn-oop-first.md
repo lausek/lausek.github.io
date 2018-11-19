@@ -19,4 +19,12 @@ Back in the days that looked like **the thing** to do. Everybody adopted it.
 
 ## The real problem
 
-I'm gonna risk it: OOP is outdated and cancerous. The way Java tries to implement the state-hiding is ridiculously wrong.
+I'm gonna risk it: OOP is outdated and cancerous. The way Java tries to implement the state-hiding is ridiculously wrong and misses the reality by far. I mean... How often did you implement an animal? How many times did you implement a parser, a serializer, a `<insert_topic>Factory`?
+
+## What's the solution
+
+Python. Python is perfect for beginners. Everything we want a newbie to know is in Python. We can open files very easily and processing lines becomes quite trivial.
+
+## ... and?
+
+Then your apprentice starts to notice that there are major problems with the way he is using the current language. Eventually he'll come up with the idea to switch to a language that fits the task better.
