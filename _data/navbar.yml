@@ -1,5 +1,7 @@
 links:
-    - title: "About"
+    - title: "cd"
+      url: "/"
+    - title: "whois"
       url: "/about.html"
-    - title: "Contact"
+    - title: "contact"
       url: "/contact.html"

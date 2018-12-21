@@ -2,8 +2,12 @@
 
 ---
 
+$foreground: white;
+$background: #3e3e3e;
+
 body {
-    color: #3e3e3e;
+    margin: 0;
+    color: $background;
     font-family: Verdana, Helvetica;
 } 
 
@@ -16,7 +20,7 @@ body {
 }
 
 #box-confirm-cookie {
-    float:right;
+    float: right;
 }
 
 @media (min-width: 850px) { 
@@ -35,16 +39,31 @@ a {
     text-decoration: none;
 }
 
-p a {
-    text-decoration: underline;
-}
-
 header {
+    width: 100%;
     margin-top: 20px;
-}
+    padding-top: 20px;
+    background-color: $background;
 
-nav a {
-    padding: 5px;
+    h1 {
+        padding: 5px;
+        padding-left: 50px;
+        color: $foreground;
+    }
+
+    nav {
+        padding: 5px;
+        padding-left: 50px;
+
+        a {
+            margin-left: 10px;
+            color: $foreground;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 footer {
@@ -52,21 +71,26 @@ footer {
     text-align: center;
 }
 
-main {
+section {
+    width: 75%;
+    margin: auto;
     line-height: 1.5;
 }
 
 p {
     padding: 10px;
+    a {
+        text-decoration: underline;
+    }
 }
 
 aside {
     text-align: center;
-}
 
-aside span {
-    display: block;
-    padding: 5px;
+    span {
+        display: block;
+        padding: 5px;
+    }
 }
 
 pre code {
