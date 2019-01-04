@@ -1,3 +1,8 @@
+---
+layout: post
+tags: abap
+---
+
 Table iterations are a broad topic with a lot of little details. They can be used as an addition to `VALUE` and `REDUCE`, while there are some specific features available in each operator. In general we could say, that a table iteration starts with the keyword `FOR`. After that, you are free to choose between a loop over table lines, groups or a classic step iteration with some counter and a terminating predicate.
 
 ### Overview
