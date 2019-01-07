@@ -59,7 +59,7 @@ END-OF-DEFINITION.
 
 ### Usage
 
-After including this macro we can instantiate results (only) by using the static methods `ok` and `err`.
+After including the macro, we can (only) instantiate results by using the static methods `ok` and `err`. This guarantees that we cannot change the inner data once creation has happened. 
 
 ``` abap
 declare_result ty_sigma i string.
@@ -68,18 +68,18 @@ DATA(lo_result1) = ty_sigma=>ok( 1510 ).
 DATA(lo_result2) = ty_sigma=>err( `there was an error` ).
 ```
 
-Just by looking at the above stated class definition you see that we can shorten a pretty idomatic expression with another macro.
+If our result instance is of type `Ok` we want to extract the wrapped value and do further processing. Just by looking at the class definition above you see that we can compress a pretty idomatic expression into another macro.  
 
 ``` abap
 " &1 = name of result value
 " &2 = name of variable to be declared value
-DEFINE result_let_ok.
+DEFINE if_ok_let.
 IF &1->is_ok( ).
     DATA(&2) = &1->unwrap( ).
 END-OF-DEFINITION.
 ```
 
-With this macro we integrate result checking beautifully.
+With this we are able to integrate result checking beautifully.
 
 ``` abap
 if_ok_let lo_result1 lv_num.
@@ -93,9 +93,9 @@ ENDIF.
 DATA(lv_dont_care) = lo_result2->unwrap( ).
 ```
 
-### Lookout
+### Final thoughts
 
-With macros we can simulate generics very primitively. Of course this doesn't work well on a big scale, e.g. I wouldn't implement a class with hundreds of code lines in one, but it is suitable enough for declaring small, compact helper types. 
+Making use of macros enables us to simulate generics very primitively. Of course this doesn't work well on a big scale, e.g. I wouldn't implement a class with hundreds of code lines in one, but it is suitable enough for declaring small, compact helper types. 
 
 Unfortunately, I haven't found a way of sharing such a declaration over the SAP Dictionary.
 
