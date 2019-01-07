@@ -10,7 +10,7 @@ You can find me on [GitHub](https://github.com/lausek).
 ---
 
 **At day:**
-Losing my last nerves for Windows 8, SAP/ABAP
+Losing my last nerves for Windows 8 (and 10), SAP/ABAP
 
 **At night:**
 Making my Debian work, write some PHP/Java/Rust
