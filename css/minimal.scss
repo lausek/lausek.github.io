@@ -5,23 +5,125 @@
 $foreground: white;
 $background: #3e3e3e;
 
-body {
-    margin: 0;
-    color: $background;
-    font-family: Verdana, Helvetica;
-} 
-
 #box-cookie-warning {
-    height:auto;
-    padding:10px;
-    margin-top:10px;
-    vertical-align:middle;
-    background-color:red;
+    height: auto;
+    padding: 10px;
+    vertical-align: middle;
+    color: black;
+    background-color: #fb5959;
 }
 
 #box-confirm-cookie {
     float: right;
 }
+
+#overview {
+    width: 95%;
+
+    li {
+        padding: 2px;
+    }
+}
+
+body {
+    margin: 0;
+    color: $background;
+    font-family: Verdana, Helvetica;
+
+    li {
+        margin: 10px;
+    }
+
+    a {
+        color: #232323;
+        text-decoration: none;
+    }
+
+    header {
+        width: 100%;
+        padding-top: 20px;
+        background-color: $background;
+
+        h1 {
+            padding: 5px;
+            padding-left: 50px;
+            color: $foreground;
+        }
+
+        nav {
+            padding: 5px;
+            padding-left: 50px;
+
+            a {
+                margin-left: 10px;
+                color: $foreground;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    main {
+        margin-top: 40px;
+        margin-bottom: 40px;
+
+        section {
+            width: 85%;
+            margin: auto;
+            line-height: 1.5;
+        }
+
+        p {
+            padding: 10px;
+            a {
+                text-decoration: underline;
+            }
+        }
+
+        aside {
+            text-align: center;
+
+            span {
+                display: block;
+                padding: 5px;
+            }
+        }
+
+        pre code {
+            display: block;
+            padding: 5px;
+            overflow-x: auto;
+            background-color: #EFEFEF;
+        }
+
+        blockquote {
+            padding: 5px;
+            border-left: 5px solid #ffc14f;
+            background-color: #F5F5AC;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .tag {
+            font-size: 10px;
+            padding: 3px;
+            padding-left: 5px;
+            padding-right: 5px;
+            background-color: lightgray;
+        }
+    }
+
+    footer {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 12px;
+        text-align: center;
+    }
+} 
 
 @media (min-width: 850px) { 
     body {
@@ -30,86 +132,16 @@ body {
     }
 }
 
-li {
-    margin: 10px;
-}
-
-a {
-    color: #232323;
-    text-decoration: none;
-}
-
-header {
-    width: 100%;
-    margin-top: 20px;
-    padding-top: 20px;
-    background-color: $background;
-
-    h1 {
-        padding: 5px;
-        padding-left: 50px;
-        color: $foreground;
+/* mobile */
+@media (max-width: 500px) { 
+    ul {
+        margin: 0;
+        margin-left: 10;
+        padding: unset;
     }
 
-    nav {
-        padding: 5px;
-        padding-left: 50px;
-
-        a {
-            margin-left: 10px;
-            color: $foreground;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
+    section {
+        margin: 5px !important;
+        /* width: 100% !important; */
     }
-}
-
-footer {
-    font-size: 12px;
-    text-align: center;
-}
-
-section {
-    width: 75%;
-    margin: auto;
-    line-height: 1.5;
-}
-
-p {
-    padding: 10px;
-    a {
-        text-decoration: underline;
-    }
-}
-
-aside {
-    text-align: center;
-
-    span {
-        display: block;
-        padding: 5px;
-    }
-}
-
-pre code {
-    display: block;
-    padding: 5px;
-    overflow-x: auto;
-    background-color: #EFEFEF;
-}
-
-blockquote {
-    padding: 5px;
-    border-left: 5px solid #ffc14f;
-    background-color: #F5F5AC;
-}
-
-.tag {
-    font-size: 10px;
-    padding: 3px;
-    padding-left: 5px;
-    padding-right: 5px;
-    background-color: lightgray;
 }
