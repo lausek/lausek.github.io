@@ -4,9 +4,7 @@
         <meta charset="utf-8" />
         <link rel="icon" type="image/gif" href="/img/icon/icon.gif" />
         <link rel="alternate" type="alternate/rss+xml" href="/feed.xml" />
-        {% for file in site.data.style.sheets %}
-        <link rel="stylesheet" type="text/css" href="{{ file }}" />
-        {% endfor %}
+        {% include stylesheet.html %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="author" content="{{ site.author }}" />
         <meta name="description" content="{{ site.description }}" />
