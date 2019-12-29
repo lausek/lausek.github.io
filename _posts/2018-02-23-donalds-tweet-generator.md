@@ -21,7 +21,7 @@ If you want to annoy people online but you have nothing relevant to say, just us
 
 ###### *Nothing in this textbox represents my opinion. Not even the slightest.*
 
-<script src="{{ site.url }}/js/phrases.js"></script>
+<script src="{{ site.url }}/app/djt-tweet/phrases.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.phrases("trigger", "output");
