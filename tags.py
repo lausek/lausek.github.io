@@ -3,6 +3,7 @@
 import datetime
 import re
 import os
+import shutil
 import sys
 
 def log(*args):
@@ -45,39 +46,59 @@ def load_tags():
         log(post, post_tags)
     return known_tags
 
+def as_name(post):
+    return post.strip()[11:].replace('-', ' ').replace('.md', '').title()
+
 def as_url(post, prefix=''):
     parts = post.replace('.md', '.html').split('-')
-    return prefix + '/{}/{}/{}/'.format(parts[0], parts[1], parts[2], '-'.join(parts[3:]))
+    return prefix + '/{}/{}/{}/{}'.format(parts[0], parts[1], parts[2], '-'.join(parts[3:]).replace('.md', '.html'))
 
 def clean_tagged():
-    os.remove('./tagged')
+    if os.path.exists('./tagged'):
+        shutil.rmtree('./tagged')
 
 def build_tagged(tags):
-    import shutil
     import subprocess
 
     cachedir = '/tmp/tagged-jekyll-cache/'
     if os.path.exists(cachedir):
-        os.remove(cachedir)
+        shutil.rmtree(cachedir)
+
+    os.mkdir(cachedir)
 
     for tag, posts in tags.items():
-        with open('{}{}.md'.format(cachedir, tag)) as f:
+        with open('{}{}.md'.format(cachedir, tag), 'w') as f:
             f.write('---\n')
-            f.write('title: Tagged: #{}'.format(tag))
-            f.write('layout: default')
+            f.write('title: "Tagged: #{}"\n'.format(tag))
+            f.write('layout: default\n')
             f.write('---\n')
             for post in posts:
-                f.write('- [{}]({})\n'.format(post, as_url(post, '/tagged')))
+                f.write('- [{}]({})\n'.format(as_name(post), as_url(post)))
 
-    shutil.copy2('./css', cachedir + './css')
+    log('copy data...')
+    shutil.copytree('./_data/', cachedir + './_data/')
+    log('copy includes...')
+    shutil.copytree('./_includes/', cachedir + './_includes/')
+    log('copy layouts...')
+    shutil.copytree('./_layouts/', cachedir + './_layouts/')
+    log('copy css...')
+    shutil.copytree('./css/', cachedir + './css/')
 
-    subprocess.run(['jekyll', 'build', '-s', cachedir, '-d', cachedir + '_site'])
+    subprocess.run(['jekyll', 'build',
+                    '-s', cachedir,
+                    '-d', cachedir + '_site',
+                    '--layouts', cachedir + '_layouts',
+                    '--config', './_config.yml'
+                    ])
+    
+    shutil.rmtree(cachedir + '_site/css')
 
     return cachedir
 
 # copy rendered html files into `tagged` folder
 def move_tagged(cachedir):
-    pass
+    log('moving new tagged files...')
+    os.rename(cachedir + '_site', './tagged')
 
 # update `tagged` folder
 def update():
@@ -86,8 +107,10 @@ def update():
         log(key, value)
 
     clean_tagged()
-    cachedir = build_tagged(tag)
+    cachedir = build_tagged(tags)
     move_tagged(cachedir)
+
+    log('done.')
 
 if __name__ == '__main__':
     update()
