@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>UML to Java</title>
+    <title>Uml2Java</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
@@ -47,11 +47,27 @@
     }
   </style>
   <body>
-    <div>If you cannot copy from the pdf supplied, try <a href="http://structurise.com/screenshot-ocr/">structurise.com</a></div>
+    <table>
+        <tr>
+            <td style="vertical-align:top">
+                <h1>Uml2Java</h1>
+                Transform a list of uml function signatures into Java code. If you cannot copy from the pdf supplied, try <a href="http://structurise.com/screenshot-ocr/">structurise.com</a>
+
+                <p>What does <b>not</b> work?</p>
+                <ul>
+                    <li>Attributes</li>
+                </ul>
+            </td>
+            <td>
+                <img src="https://thumbs.gfycat.com/CriminalKnobbyHind-small.gif">
+            </td>
+        </tr>
+    </table>
 
     <h2>Input (UML)</h2>
     <textarea id="in" rows="20" placeholder="+main(args:String[])"></textarea>
-    <button>Refresh</button>
+
+    <p><button>Refresh</button></p>
 
     <h2>Output (Java)</h2>
     <textarea id="out" rows="20"></textarea>
