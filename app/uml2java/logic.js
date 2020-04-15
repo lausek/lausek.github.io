@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         generate() {
             let vis = generate_vis(this.vis);
             let args = generate_args(this.args);
-            let ret = generate_return_ty(this.ret);
+            let ret = patch_type(this.ret);
             return `${vis} ${ret} ${this.name}(${args}) {}`;
         }
     }
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         generate() {
             let vis = generate_vis(this.vis);
-            let ty = generate_return_ty(this.ty);
+            let ty = patch_type(this.ty);
             return `${vis} ${ty} ${this.name};`;
         }
     }
@@ -52,8 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let name = match[2];
         let args = match[3];
         let ret = match[4];
-
-        console.log(vis, name, args, ret);
 
         return new Method(vis, name, ret, args ? parse_args(args) : undefined);
     }
@@ -100,8 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if(code) {
                 code += ', ';
             }
-            console.log(arg);
-            code += `${arg['ty']} ${arg['name']}`;
+            let ty = patch_type(arg['ty']);
+            code += `${ty} ${arg['name']}`;
         }
         return code;
     }
@@ -115,9 +113,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }[vis]
     }
 
-    function generate_return_ty(ret) {
+    function patch_type(ret) {
         if(ret === undefined || ret === null) {
             return 'void';
+        }
+        if(ret === 'string') {
+            return 'String';
         }
         return ret;
     }
