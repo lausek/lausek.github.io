@@ -32,6 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function analyse_screenshot() {
+        let service_url = 'http://structurise.com/wp-content/plugins/wp-struweb';
+        let content_ty = 'application/x-www-form-urlencoded';
+        let open_path = '/struweb.php';
+        // lang=English & outf=HTML & inptype=PN & file_name=clipboard.png & dataURL=data:image/png;<base64>
+        // response = id
+        
+        let return_path = '/struweb.php?res='; // + id.strip()
+    }
+
     function parse_args(args) {
         let parsed = [];
         for(let arg of args.split(",")) {
