@@ -6,7 +6,6 @@
   </head>
   <style>
     body {
-      margin: 0;
       font-family: Arial;
     }
     #config {
@@ -41,12 +40,21 @@
         max-width: 90%;
       }
     }
+    #in,
+    #out {
+        display: block;
+        width: 100%;
+    }
   </style>
   <body>
     <div>If you cannot copy from the pdf supplied, try <a href="structurise.com/screenshot-ocr/">structurise.com</a></div>
 
-    <textarea id="in"></textarea>
-    <textarea id="out"></textarea>
+    <h2>Input (UML)</h2>
+    <textarea id="in" rows="20" placeholder="+main(args:String[])"></textarea>
+    <button>Refresh</button>
+
+    <h2>Output (Java)</h2>
+    <textarea id="out" rows="20"></textarea>
 
     <script src="logic.js"></script>
   </body>

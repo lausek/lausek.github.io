@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if(code) {
                 code += ', ';
             }
+            console.log(arg);
             code += `${arg['ty']} ${arg['name']}`;
         }
         return code;
