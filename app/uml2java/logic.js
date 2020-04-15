@@ -1,5 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let umlre = /(\+|#|-|~)(\S+)\(([^\)]*)[\)\s:]*(\S+)?/;
+    let methodre = /(\+|#|-|~)\s*(\S+)\(([^\)]*)[\)\s:]*(\S+)?/;
+    let attributere = /(\+|#|-|~)\s*(\S+)[\s:]*(\S+)/;
+
+    class Method {
+        constructor(vis, name, ret, args) {
+            this.vis = vis;
+            this.name = name;
+            this.ret = ret;
+            this.args = args;
+        }
+
+        generate() {
+            let vis = generate_vis(this.vis);
+            let args = generate_args(this.args);
+            let ret = generate_return_ty(this.ret);
+            return `${vis} ${ret} ${this.name}(${args}) {}`;
+        }
+    }
+
+    class Attribute {
+        constructor(vis, name, ty) {
+            this.vis = vis;
+            this.name = name;
+            this.ty = ty;
+        }
+
+        generate() {
+            let vis = generate_vis(this.vis);
+            let ty = generate_return_ty(this.ty);
+            return `${vis} ${ty} ${this.name};`;
+        }
+    }
 
     function parse_args(args) {
         let parsed = [];
@@ -12,10 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return parsed;
     }
 
-    function parse_line(line) {
-        let match = umlre.exec(line);
-        if(match === null)
-        {
+    function parse_method(line) {
+        let match = methodre.exec(line);
+        if(match === null) {
             return null;
         }
         let vis = match[1];
@@ -25,12 +55,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log(vis, name, args, ret);
 
-        return {
-            visibility: vis,
-            name: name,
-            args: args ? parse_args(args) : undefined,
-            ret: ret,
-        };
+        return new Method(vis, name, ret, args ? parse_args(args) : undefined);
+    }
+
+    function parse_attribute(line) {
+        let match = attributere.exec(line);
+        if(match === null) {
+            return null;
+        }
+        let vis = match[1];
+        let name = match[2];
+        let ty = match[3];
+
+        return new Attribute(vis, name, ty);
+    }
+
+    function is_attribute(line) {
+        return line.exec() !== null;
+    }
+
+    function parse_line(line) {
+        let method = parse_method(line);
+        if(method === null) {
+            return parse_attribute(line);
+        }
+        return method;
     }
 
     function parse(src) {
@@ -76,16 +125,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function generate(parsed) {
         let code = '';
 
-        for(let signature of parsed) {
-            if(signature === null) {
+        for(let entity of parsed) {
+            if(entity === null) {
                 console.log('error on line x');
                 continue;
             }
 
-            let vis = generate_vis(signature['visibility']);
-            let args = generate_args(signature['args']);
-            let ret = generate_return_ty(signature['ret']);
-            code += `${vis} ${ret} ${signature['name']}(${args}) {}`;
+            code += entity.generate();
             code += '\n';
         }
 
