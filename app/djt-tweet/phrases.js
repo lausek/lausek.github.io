@@ -38,10 +38,9 @@
                 "hillary",
                 "joe",
                 "bernie",
-                "the federal reserve",
+                "federal reserve",
                 "obama",
-                "china",
-                "the federal reserve"
+                "china"
             ],
             actions: [
                 "should",
