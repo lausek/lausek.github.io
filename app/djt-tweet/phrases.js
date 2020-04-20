@@ -18,7 +18,9 @@
                 "racist",
                 "fascist",
                 "feminist",
-                "young"
+                "young",
+                "sleepy",
+                "socialist"
             ],
             daemons: [
                 "liberals",
@@ -32,12 +34,18 @@
                 "blacks",
                 "activists",
                 "immigrants",
-                "aliens"
+                "aliens",
+                "hillary",
+                "joe",
+                "bernie",
+                "the federal reserve",
+                "obama",
+                "china",
+                "the federal reserve"
             ],
             actions: [
                 "should",
-                "must",
-                "have to"
+                "must"
             ],
             things: [
                 "abort their babies",
@@ -50,7 +58,11 @@
                 "work below minimal wage",
                 "be deported to mexico",
                 "support ending obama care",
-                "be enslaved"
+                "be enslaved",
+                "liberate a county",
+                "defend the 2th amendment",
+                "lower interest rates",
+                "thank me"
             ],
             reasons: [
                 "communism",
@@ -65,7 +77,12 @@
                 "the law is too complicated to read",
                 "it is our constitutional right",
                 "its in the bible",
-                "taxation is theft"
+                "taxation is theft",
+                "I did all the best and much more",
+                "it will go away like a miracle",
+                "I have a list of things",
+                "nobody likes nobody",
+                "republican x has my full endorsement"
             ]
         };
 
