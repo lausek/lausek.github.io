@@ -3,5 +3,7 @@ links:
       url: "/"
     - title: "whois"
       url: "/about.html"
+    - title: "apps"
+      url: "/app/index.html"
     - title: "contact"
       url: "/contact.html"
