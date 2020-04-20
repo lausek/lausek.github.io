@@ -76,7 +76,7 @@
                 "my button is bigger",
                 "the law is too complicated to read",
                 "it is our constitutional right",
-                "its in the bible",
+                "it's in the bible",
                 "taxation is theft",
                 "I did all the best and much more",
                 "it will go away like a miracle",
