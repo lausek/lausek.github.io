@@ -7,14 +7,16 @@ $background: #3e3e3e;
 
 #box-cookie-warning {
     height: auto;
-    padding: 10px;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 10px;
     vertical-align: middle;
     color: black;
-    background-color: #fb5959;
+    background-color: #fbcd59;
 }
 
 #box-confirm-cookie {
-    float: right;
+    font-size: 10px;
 }
 
 #overview {
