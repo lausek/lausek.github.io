@@ -79,6 +79,10 @@ body {
     nav {
         padding: 10px;
         padding-left: 30px;
+
+        li {
+            text-align: right;
+        }
     }
 
     footer {
@@ -117,11 +121,8 @@ body {
 
     #main-content {
         margin: 0;
-        width: 100%;
 
-        .row {
-            width: 100%;
-        }
+        .row { }
     }
 
     #description {
