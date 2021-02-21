@@ -2,8 +2,8 @@
 
 ---
 
-$foreground: white;
-$background: #3e3e3e;
+$white: white;
+$black: #151515;
 
 #box-cookie-warning {
     height: auto;
@@ -32,14 +32,11 @@ body, div {
 }
 
 body {
+    letter-spacing: 0.5px;
+
     a {
         color: inherit;
         text-decoration: none;
-    }
-
-    footer {
-        font-size: 0.8em;
-        text-align: center;
     }
 
     p {
@@ -47,13 +44,52 @@ body {
         line-height: 2;
     }
 
-    h1, h2, h3 {
+    h1, h2, h3, h4, h5, h6 {
         padding: 10px;
         padding-top: 20px;
+        letter-spacing: 3px;
     }
 
-    body, #main-content, .row {
+    header {
+        padding-top: 20px;
+
+        h1, h5 {
+            padding: 5px;
+        }
+
+        .col {
+            text-align: right;
+        }
+    }
+
+    hr {
+        opacity: .1;
+        margin: 10px;
+    }
+
+    nav {
+        padding-left: 50px;
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            padding: 5px;
+        }
+    }
+
+    footer {
+        font-size: 0.8em;
+        text-align: center;
+    }
+
+    #main-content {
         height: 100vh;
+    }
+
+    #greeting {
+        text-align: right;
     }
 
     #left-hand-side,
@@ -62,8 +98,13 @@ body {
     }
 
     #left-hand-side {
-        color: $foreground;
-        background-color: $background;
+        color: $white;
+        background-color: $black;
+    }
+
+    #right-hand-side {
+        color: $black;
+        background-color: $white;
     }
 
     #main-content {

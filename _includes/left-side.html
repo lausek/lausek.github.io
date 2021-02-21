@@ -1,0 +1,31 @@
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5 id="greeting">
+                    Hey, I am
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="{{ site.url }}">
+                    <h1>λausek</h1>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<hr>
+
+<nav>
+    <ul>
+        {% for item in site.data.navbar.links %}
+            <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <ul>
+        <li><a href="https://github.com/lausek">GitHub</a></li>
+    </ul>
+</nav>
