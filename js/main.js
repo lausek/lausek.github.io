@@ -1,25 +1,48 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const DELAY = 1000;
+    const DELAY = 3000;
     const GREETINGS = [
-        'Hey, I am',
         'Hej, jag heter',
         'Moin, ich bin',
         'Terve, minä olen',
         'привет, я',
+        'Hey, I am',
     ];
 
     let greeting = document.getElementById('greeting');
     let counter = 0;
 
-    function next() {
-        greeting.innerText = GREETINGS[counter];
-        counter += 1;
+    greeting.style['opacity'] = 1;
 
-        if(GREETINGS.length <= counter) {
-            counter = 0;
+    function fade(step, done) {
+        let current = parseFloat(greeting.style['opacity']);
+        let next = current + step;
+
+        if(next <= 0 || 1 <= next) {
+            done()
+        } else {
+            greeting.style['opacity'] = next;
+
+            setTimeout(function() { fade(step, done) }, 100)
         }
+    }
 
-        setTimeout(next, DELAY)
+    function next() {
+        // fade out
+        fade(-0.1, function() {
+            // set new text
+            greeting.innerText = GREETINGS[counter];
+
+            // fade in
+            fade(0.1, function() {
+                counter += 1;
+
+                if(GREETINGS.length <= counter) {
+                    counter = 0;
+                }
+
+                setTimeout(next, DELAY)
+            })
+        })
     }
 
     next();
