@@ -2,20 +2,60 @@
 layout: default
 ---
 
-<h1>{{ page.title }}</h2>
-{% include tags.html tags=page.tags %}
+<article>
+    <h3>{{ page.title }}</h3>
 
-<hr />
+    <hr />
 
-{{ page.content }}
-
-<hr />
+    <div class="container">
+        {{ page.content }}
+    </div>
+</article>
 
 <aside>
-{% if page.next != nil %}
-    <span><a href="{{ page.next.url }}">&lt; {{ page.next.title }}</a></span>
-{% endif %}
-{% if page.previous != nil %}
-    <span><a href="{{ page.previous.url }}">{{ page.previous.title }} &gt;</a></span>
-{% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col" style="text-align:left;">
+                {% if page.previous != nil %}
+                    &lt;
+                {% endif %}
+            </div>
+            <div class="col" style="text-align:right;">
+                {% if page.next != nil %}
+                    &gt;
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="text-align:left;">
+                {% if page.previous != nil %}
+                    <span><a href="{{ page.previous.url }}">{{ page.previous.title }}</a></span>
+                {% endif %}
+            </div>
+            <div class="col" style="text-align:right;">
+                {% if page.next != nil %}
+                    <span><a href="{{ page.next.url }}">{{ page.next.title }}</a></span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </aside>
+
+<!--article>
+    <h3>{{ page.title }}</h3>
+    
+    <hr />
+    
+    {{ page.content }}
+    
+    <hr />
+    
+    <aside>
+    {% if page.next != nil %}
+        <span><a href="{{ page.next.url }}">&lt; {{ page.next.title }}</a></span>
+    {% endif %}
+    {% if page.previous != nil %}
+        <span><a href="{{ page.previous.url }}">{{ page.previous.title }} &gt;</a></span>
+    {% endif %}
+    </aside>
+</article-->

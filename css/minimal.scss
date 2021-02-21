@@ -20,14 +20,6 @@ $gray: #555;
     font-size: 10px;
 }
 
-#overview {
-    width: 95%;
-
-    li {
-        padding: 2px;
-    }
-}
-
 body {
     height: 100vh;
     letter-spacing: 0.6px;
@@ -61,6 +53,10 @@ body {
             padding: 5px;
         }
 
+        #greeting {
+            text-align: right;
+        }
+
         .col {
             text-align: right;
         }
@@ -71,18 +67,18 @@ body {
         margin: 10px;
     }
 
+    ul {
+        margin: auto;
+        list-style-type: none;
+    }
+
+    li {
+        padding: 10px;
+    }
+
     nav {
         padding: 10px;
         padding-left: 30px;
-
-        ul {
-            margin: auto;
-            list-style-type: none;
-        }
-
-        li {
-            padding: 10px;
-        }
     }
 
     footer {
@@ -93,10 +89,6 @@ body {
 
     #main-content {
         height: 100vh;
-    }
-
-    #greeting {
-        text-align: right;
     }
 
     #left-hand-side,
@@ -126,6 +118,10 @@ body {
     #main-content {
         margin: 0;
         width: 100%;
+
+        .row {
+            width: 100%;
+        }
     }
 
     #description {
@@ -140,5 +136,18 @@ body {
     .button:hover {
         background: $gray;
         border-color: $gray;
+    }
+
+    article {
+        padding-top: 50px;
+
+        blockquote, code, div, figure, p, pre {
+            overflow-x: unset !important;
+            overflow-y: unset !important;
+            margin: unset !important;
+            box-sizing: unset !important;
+            padding-right: unset !important;
+            padding-left: unset !important;
+        }
     }
 }
