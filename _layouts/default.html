@@ -24,12 +24,15 @@
         <div id="main-content" class="container">
             <div class="row">
                 <div class="col" id="left-hand-side">
-                    {% include left-side.html %}
-                    {% include footer.html %}
+                    <div id="left-hand-side-inner">
+                        {% include left-side.html %}
+                        {% include footer.html %}
+                    </div>
                 </div>
                 <div class="col" id="right-hand-side">
-                    {% include description.html %}
-                    <!-- {{ content }} -->
+                    <div id="right-hand-side-inner">
+                        {{ content }}
+                    </div>
                 </div>
             </div>
         </div>

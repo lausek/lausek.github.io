@@ -1,9 +1,5 @@
 links:
-    - title: "cd"
-      url: "/"
-    - title: "whois"
-      url: "/about.html"
-    - title: "apps"
-      url: "/app/index.html"
-    - title: "contact"
+    - title: "Contact"
       url: "/contact.html"
+    - title: "GitHub"
+      url: "https://github.com/lausek"

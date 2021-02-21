@@ -4,6 +4,7 @@
 
 $white: white;
 $black: #151515;
+$gray: #555;
 
 #box-cookie-warning {
     height: auto;
@@ -27,21 +28,24 @@ $black: #151515;
     }
 }
 
-body, div {
-    height: 100%;
-}
-
 body {
-    letter-spacing: 0.5px;
+    height: 100vh;
+    letter-spacing: 0.6px;
 
     a {
         color: inherit;
         text-decoration: none;
     }
 
+    a:hover {
+        color: inherit;
+        border-bottom: 2px dotted;
+    }
+
     p {
         padding: 10px;
         line-height: 2;
+        text-align: justify;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -68,20 +72,22 @@ body {
     }
 
     nav {
-        padding-left: 50px;
+        padding: 10px;
+        padding-left: 40px;
 
         ul {
             list-style-type: none;
         }
 
         li {
-            padding: 5px;
+            padding: 10px;
         }
     }
 
     footer {
-        font-size: 0.8em;
+        font-size: 0.6em;
         text-align: center;
+        color: $gray;
     }
 
     #main-content {
@@ -94,7 +100,9 @@ body {
 
     #left-hand-side,
     #right-hand-side {
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        height: 100vh;
     }
 
     #left-hand-side {
@@ -107,6 +115,13 @@ body {
         background-color: $white;
     }
 
+    #left-hand-side-inner,
+    #right-hand-side-inner {
+        display: block;
+        width: 100%;
+        padding: 50px;
+    }
+
     #main-content {
         margin: 0;
         width: 100%;
@@ -115,126 +130,14 @@ body {
     #description {
         text-align: justify;
     }
-}
 
-/*
-body {
-    margin: 0;
-    color: $background;
-    font-family: Verdana, Helvetica;
-
-    li {
-        margin: 10px;
+    .button {
+        color: $gray;
+        border-color: $gray;
     }
 
-    a {
-        color: #232323;
-        text-decoration: none;
-    }
-
-    header {
-        width: 100%;
-        padding-top: 20px;
-        background-color: $background;
-
-        h1 {
-            padding: 5px;
-            padding-left: 50px;
-            color: $foreground;
-        }
-
-        nav {
-            padding: 5px;
-            padding-left: 50px;
-
-            a {
-                margin-left: 10px;
-                color: $foreground;
-            }
-
-            a:hover {
-                text-decoration: underline;
-            }
-        }
-    }
-
-    main {
-        margin-top: 40px;
-        margin-bottom: 40px;
-
-        section {
-            width: 85%;
-            margin: auto;
-            line-height: 1.5;
-        }
-
-        p {
-            padding: 10px;
-            a {
-                text-decoration: underline;
-            }
-        }
-
-        aside {
-            text-align: center;
-
-            span {
-                display: block;
-                padding: 5px;
-            }
-        }
-
-        pre code {
-            display: block;
-            padding: 5px;
-            overflow-x: auto;
-            background-color: #EFEFEF;
-        }
-
-        blockquote {
-            padding: 5px;
-            border-left: 5px solid #ffc14f;
-            background-color: #F5F5AC;
-        }
-
-        img {
-            max-width: 100%;
-        }
-
-        .tag {
-            font-size: 10px;
-            padding: 3px;
-            padding-left: 5px;
-            padding-right: 5px;
-            background-color: lightgray;
-        }
-    }
-
-    footer {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        font-size: 12px;
-        text-align: center;
-    }
-} 
-
-@media (min-width: 850px) { 
-    body {
-        margin: auto;
-        width: 800px;
+    .button:hover {
+        background: $gray;
+        border-color: $gray;
     }
 }
-
-@media (max-width: 500px) { 
-    ul {
-        margin: 0;
-        margin-left: 10;
-        padding: unset;
-    }
-
-    section {
-        margin: 5px !important;
-        width: 100% !important;
-    }
-}
-*/
