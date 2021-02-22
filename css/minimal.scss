@@ -19,8 +19,14 @@ $gray: #555;
     font-size: 10px;
 }
 
+body,
+#main-content,
+#left-hand-side,
+#right-hand-side {
+    min-height: 100vh;
+}
+
 body {
-    height: 100vh;
     letter-spacing: 0.6px;
 
     a {
@@ -91,15 +97,10 @@ body {
         color: $gray;
     }
 
-    #main-content {
-        height: 100vh;
-    }
-
     #left-hand-side,
     #right-hand-side {
         display: flex;
         align-items: center;
-        height: 100vh;
     }
 
     #left-hand-side {
@@ -116,7 +117,7 @@ body {
     #right-hand-side-inner {
         display: block;
         width: 100%;
-        padding: 50px;
+        padding: 40px;
     }
 
     #main-content {
