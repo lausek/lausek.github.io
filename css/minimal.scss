@@ -141,6 +141,15 @@ body {
         border-color: $gray;
     }
 
+    .project-link {
+        color: $white;
+        background-color: $black;
+        margin-right: 5px;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     article {
         padding-top: 50px;
 
