@@ -166,5 +166,10 @@ body {
 @media only screen and (max-width: 767.98px) {
     #right-hand-side {
         min-width: 90vw;
+        width: 100%;
+    }
+
+    #right-hand-side-inner {
+        padding: 20px !important;
     }
 }

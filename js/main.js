@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const DELAY = 3000;
     const GREETINGS = [
         'Hej, jag heter',
-        'привет, я',
+        'привет, меня зовут',
         'Terve, minä olen',
         'Saluton, mi estas',
         'Hoi, ik ben',
