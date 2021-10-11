@@ -5,18 +5,16 @@ $white: white;
 $black: #151515;
 $gray: #555;
 
-#box-cookie-warning {
-    height: auto;
-    padding: 5px;
-    margin-bottom: 5px;
-    font-size: 10px;
-    vertical-align: middle;
-    color: black;
-    background-color: #fbcd59;
-}
+#navigation-hint {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0px 20px 15px 0px;
 
-#box-confirm-cookie {
-    font-size: 10px;
+    img {
+        filter: brightness(1.4);
+    }
 }
 
 body,
@@ -161,5 +159,9 @@ body {
 
     #right-hand-side-inner {
         padding: 20px !important;
+    }
+
+    #navigation-hint {
+        display: block;
     }
 }
