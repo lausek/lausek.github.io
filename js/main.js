@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     let greeting = document.getElementById('greeting');
-    let counter = 0;
+    // set initial greeting relative to current time
+    let counter = (new Date()).getSeconds() % GREETINGS.length;
 
     greeting.style['opacity'] = 1;
 
