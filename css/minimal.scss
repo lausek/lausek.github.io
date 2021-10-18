@@ -12,6 +12,10 @@ $gray: #555;
     bottom: 0;
     padding: 0px 20px 15px 0px;
 
+    a:hover {
+        border: 0;
+    }
+
     img {
         filter: brightness(1.4);
     }
