@@ -17,12 +17,24 @@
     </div>
 </header>
 
-<hr>
+<hr />
 
 <nav>
     <ul>
         {% for item in site.data.navbar.links %}
-            <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+            <li>
+            {% if item.external %}
+                <a href="{{ item.url }}" rel="noopener">{{ item.title }}</a>
+            {% else %}
+                <a href="{{ item.url }}#right">{{ item.title }}</a>
+            {% endif %}
+            </li>
         {% endfor %}
     </ul>
 </nav>
+
+<hr />
+
+<footer>
+    2018 - 2021
+</footer>

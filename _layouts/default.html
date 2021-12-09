@@ -30,19 +30,18 @@
     <body>
         <div id="main-content" class="container-lg">
             <div id="navigation-hint">
-                <a href="#right-hand-side" aria-label="Scroll down">
+                <a href="#right" aria-label="Scroll down">
                     <img src="/img/assets/arrow-down.png" alt="Scroll down" />
                 </a>
             </div>
             <div class="row">
-                <div class="col" id="left-hand-side">
-                    <div id="left-hand-side-inner">
-                        {% include left-side.html %}
-                        {% include footer.html %}
+                <div class="col" id="left">
+                    <div id="left-inner">
+                        {% include left.html %}
                     </div>
                 </div>
-                <div class="col-6" id="right-hand-side">
-                    <div id="right-hand-side-inner">
+                <div class="col-6" id="right">
+                    <div id="right-inner">
                         {{ content }}
                     </div>
                 </div>

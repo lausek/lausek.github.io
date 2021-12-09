@@ -23,8 +23,8 @@ $gray: #555;
 
 body,
 #main-content,
-#left-hand-side,
-#right-hand-side {
+#left,
+#right {
     min-height: 100vh;
 }
 
@@ -100,24 +100,24 @@ body {
         color: $gray;
     }
 
-    #left-hand-side,
-    #right-hand-side {
+    #left,
+    #right {
         display: flex;
         align-items: center;
     }
 
-    #left-hand-side {
+    #left {
         color: $white;
         background-color: $black;
     }
 
-    #right-hand-side {
+    #right {
         color: $black;
         background-color: $white;
     }
 
-    #left-hand-side-inner,
-    #right-hand-side-inner {
+    #left-inner,
+    #right-inner {
         display: block;
         width: 100%;
         padding: 40px;
@@ -156,12 +156,12 @@ body {
 }
 
 @media only screen and (max-width: 767.98px) {
-    #right-hand-side {
+    #right {
         min-width: 90vw;
         width: 100%;
     }
 
-    #right-hand-side-inner {
+    #right-inner {
         padding: 20px !important;
     }
 
