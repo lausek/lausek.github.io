@@ -132,6 +132,18 @@ body {
     #description {
         text-align: justify;
     }
+    
+    .project-separator {
+        padding: 30px;
+    }
+
+    .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 10px;
+        row-gap: 10px;
+        padding: 0px 10px;
+    }
 
     .project-link {
         color: $white;
