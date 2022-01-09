@@ -1,8 +1,8 @@
 links:
+    - title: "Me"
+      url: "/"
+    - title: "Projects"
+      url: "/projects.html"
     - title: "GitHub"
       url: "https://github.com/lausek"
       external: true
-    - title: "Contact"
-      url: "/contact.html"
-    - title: "Projects"
-      url: "/projects.html"
