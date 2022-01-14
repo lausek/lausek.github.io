@@ -14,6 +14,19 @@ I have created a small library implementing code generation tools and a bytecode
 
 <div class="project-separator"></div>
 
+### remarkov
+
+A Python library for generating new text from existing samples.
+No AI involved - just dead-simple code.
+
+<div class="project-links">
+    <span class="project-link"><a href="https://lausek.eu/remarkov">Homepage</a></span>
+    <span class="project-link"><a href="https://lausek.eu/remarkov/docs/remarkov.html">Documentation</a></span>
+    <span class="project-link"><a href="https://github.com/lausek/remarkov">Code</a></span>
+</div>
+
+<div class="project-separator"></div>
+
 ### lowebf
 
 A microframework for building websites in PHP with a focus on simplicity, security and content segregation.
