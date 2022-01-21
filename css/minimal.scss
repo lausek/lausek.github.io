@@ -25,6 +25,7 @@ body,
 #main-content,
 #left,
 #right {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
     min-height: 100vh;
 }
 
@@ -109,6 +110,7 @@ body {
     #left {
         color: $white;
         background-color: $black;
+        max-width: 450px;
     }
 
     #right {
@@ -168,6 +170,11 @@ body {
 }
 
 @media only screen and (max-width: 767.98px) {
+    #left {
+        width: 100%;
+        max-width: unset !important;
+    }
+
     #right {
         min-width: 90vw;
         width: 100%;

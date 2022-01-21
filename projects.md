@@ -27,6 +27,7 @@ No AI involved - just dead-simple code.
 
 <div class="project-separator"></div>
 
+<!--
 ### lowebf
 
 A microframework for building websites in PHP with a focus on simplicity, security and content segregation.
@@ -35,3 +36,4 @@ A microframework for building websites in PHP with a focus on simplicity, securi
     <span class="project-link"><a href="https://lausek.eu/lowebf/">Documentation</a></span>
     <span class="project-link"><a href="https://github.com/lausek/lowebf">Code</a></span>
 </div>
+-->
