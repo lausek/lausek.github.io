@@ -108,8 +108,10 @@ body {
     }
 
     #left {
+        z-index: 1000;
         color: $white;
         background-color: $black;
+        box-shadow: 5px 0px 7px 0px gray;
         max-width: 450px;
     }
 
