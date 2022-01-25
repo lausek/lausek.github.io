@@ -1,26 +1,13 @@
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h5 id="greeting">
-                    Hey, I am
-                </h5>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <a href="{{ site.url }}">
-                    <h1>λausek</h1>
-                </a>
-            </div>
-        </div>
-    </div>
-</header>
+<span id="greeting">
+    Hey, I am
+</span>
+
+<h1>λausek</h1>
 
 <hr />
 
 <nav>
-    <ul>
+    <ul id="side-links">
         {% for item in site.data.navbar.links %}
             <li>
             {% if item.external %}
@@ -32,9 +19,3 @@
         {% endfor %}
     </ul>
 </nav>
-
-<hr />
-
-<footer>
-    2018 - 2021
-</footer>
