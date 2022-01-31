@@ -1,9 +1,7 @@
 --- 
 ---
 
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jura&family=Play:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jura&family=Play:wght@700&family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jura&family=Play:wght@700&family=Roboto:wght@300&display=swap');
 
 * {
     --eerie-black: #131313;
@@ -95,11 +93,13 @@ p {
 #left-triangle {
     z-index: 500;
     width: 70px;
-    filter: drop-shadow(0 0 0.75rem gray);
+    min-width: 100px;
+    margin-left: -30px;
+    transform: skewX(-2deg);
 
-    img {
-        height: 100%;
-    }
+    background-color: var(--eerie-black);
+
+    filter: drop-shadow(0 0 0.75rem gray);
 }
 
 #left-inner,
