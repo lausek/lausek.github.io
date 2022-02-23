@@ -1,11 +1,30 @@
 <header>
-    <span id="greeting">
-        Hey, I am
-    </span>
+    <noscript>
+        <span id="greeting">Hey, I am</span>
+    </noscript>
+
+    <span id="greeting"></span>
 
     <h1>λausek</h1>
 
     <hr />
+
+    <script src="/js/typewriter-animation.js"></script>
+    <script type="text/javascript">
+        TypewriterAnimation({
+            mount: document.getElementById("greeting"),
+            timeoutAfterWrite: 2000,
+            texts: [
+                'Hej, jag heter',
+                'привет, меня зовут',
+                'Terve, minä olen',
+                'Saluton, mi estas',
+                'Hoi, ik ben',
+                'Moin, ich bin',
+                'Hey, I am',
+            ],
+        })
+    </script>
 </header>
 
 <nav>
