@@ -27,7 +27,7 @@ body {
     display: flex;
     flex: 1;
     flex-direction: row;
-    gap: 60px;
+    gap: 90px;
     overflow: hidden;
 }
 
@@ -94,7 +94,7 @@ p {
     z-index: 500;
     width: 70px;
     min-width: 100px;
-    margin-left: -30px;
+    margin-left: -70px;
     transform: skewX(-2deg);
 
     background-color: var(--eerie-black);
