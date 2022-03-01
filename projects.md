@@ -4,7 +4,7 @@ layout: default
 
 ### lovm2
 
-I have created a small library implementing code generation tools and a bytecode interpreter that aim to be a simple foundation for programming language development. It offers bindings for my two favorite development environments Rust and Python.
+A small library implementing code generation tools and a bytecode interpreter. It is intended as a simple foundation for programming language development. Basically, all you have to do is write a parser and do some transpiling. It offers bindings for my two favorite development environments, Rust and Python.
 
 <div class="project-links">
     <span class="project-link"><a href="https://lausek.eu/lovm2/">Homepage</a></span>
