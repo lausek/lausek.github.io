@@ -173,4 +173,8 @@ p {
     #right-content {
         flex: 1;
     }
+
+    #right-content p {
+        text-align: justify;
+    }
 }
