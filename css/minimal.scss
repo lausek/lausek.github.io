@@ -15,7 +15,7 @@ html {
     display: flex;
     flex-direction: row;
 
-    font-size: 14pt;
+    font-size: 13pt;
 }
 
 body {
@@ -188,6 +188,10 @@ article {
     #right-inner {
         flex: 1;
         padding: 20px;
+    }
+
+    .mode-full #right-inner {
+        display: flex !important;
     }
 
     #right-content {
