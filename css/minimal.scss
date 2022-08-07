@@ -42,7 +42,7 @@ a:hover {
 
 h1 {
     font-family: 'Play';
-    font-size: 35pt;
+    font-size: 25pt;
 }
 
 h2,
@@ -56,6 +56,12 @@ h6 {
 p {
     font-size: 14pt;
     line-height: 1.7;
+}
+
+ul, ol {
+    li {
+        padding: 5px;
+    }
 }
 
 #left > hr {
@@ -110,6 +116,10 @@ p {
     justify-content: center;
 }
 
+.mode-full #right-inner {
+    display: unset !important;
+}
+
 #left-content {
     min-height: 200px;
     min-width: 200px;
@@ -140,6 +150,16 @@ p {
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+article {
+    .article-info {
+        color: gray;
+    }
+
+    div {
+        padding: 10px 0;
+    }
 }
 
 @media only screen and (max-width: 990px) {

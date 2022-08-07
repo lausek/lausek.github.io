@@ -1,7 +1,7 @@
 <ul id="overview">
     {% for page in include.pages %}
         <li>
-        {{ page.date | date: "%Y-%m-%d" }} - <a href="{{ page.url }}">{{ page.title }}</a>
+            {{ page.date | date: "%Y-%m-%d" }} - <a href="{{ page.url }}">{{ page.title }}</a>
         </li>
     {% else %}
         No posts yet.

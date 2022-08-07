@@ -3,6 +3,8 @@ links:
       url: "/"
     - title: "Projects"
       url: "/projects.html"
+    - title: "Blog"
+      url: "/blog.html"
     - title: "GitHub"
       url: "https://github.com/lausek"
       external: true
