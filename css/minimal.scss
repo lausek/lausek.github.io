@@ -151,6 +151,10 @@ ul, ol {
 }
 
 article {
+    .article-title {
+        margin-bottom: 10px;
+    }
+
     .article-info {
         color: gray;
     }
