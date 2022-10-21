@@ -25,7 +25,7 @@ body {
     display: flex;
     flex: 1;
     flex-direction: row;
-    gap: 90px;
+    gap: 110px;
     overflow: hidden;
 }
 
@@ -53,12 +53,15 @@ h6 {
 
 p {
     font-size: 14pt;
-    line-height: 1.7;
+    line-height: 2;
 }
 
 ul, ol {
+    list-style-type: none;
+
     li {
         padding: 5px;
+        padding-left: 15px;
     }
 }
 
@@ -126,8 +129,8 @@ ul, ol {
 }
 
 #right-content {
-    max-width: 550px;
-    text-align: justify;
+    max-width: 700px;
+    min-height: 40%;
 }
 
 .project-separator {
@@ -150,8 +153,17 @@ ul, ol {
     padding-right: 10px;
 }
 
+.blog-overview {
+    min-height: 70%;
+}
+
+.blog-list {
+    font-size: 20px;
+}
+
 article {
     .article-title {
+        margin-top: 60px;
         margin-bottom: 10px;
     }
 
@@ -164,10 +176,11 @@ article {
     }
 }
 
-@media only screen and (max-width: 990px) {
+@media only screen and (max-width: 1200px) {
     body {
         flex-direction: column;
         overflow: auto;
+        gap: 80px;
     }
 
     #right {
@@ -201,6 +214,7 @@ article {
     }
 
     #right-content p {
+        line-height: 1.7;
         text-align: justify;
     }
 }

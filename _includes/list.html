@@ -1,6 +1,7 @@
-<ul id="overview">
+<ul class="blog-overview">
+    <h1>Posts</h1>
     {% for page in include.pages %}
-        <li>
+        <li class="blog-list">
             {{ page.date | date: "%Y-%m-%d" }} - <a href="{{ page.url }}">{{ page.title }}</a>
         </li>
     {% else %}
