@@ -171,7 +171,8 @@ article {
         color: gray;
     }
 
-    div {
+    .article-content {
+        text-align: justify;
         padding: 10px 0;
     }
 }
