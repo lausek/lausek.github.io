@@ -56,15 +56,6 @@ p {
     line-height: 2;
 }
 
-ul, ol {
-    list-style-type: none;
-
-    li {
-        padding: 5px;
-        padding-left: 15px;
-    }
-}
-
 #left > hr {
     color: var(--nickel);
 }
@@ -159,6 +150,7 @@ ul, ol {
 
 .blog-list {
     font-size: 20px;
+    margin-top: 20px;
 }
 
 article {

@@ -1,12 +1,10 @@
-<ul class="blog-overview">
+<div class="blog-overview">
     {% for page in include.pages %}
-        <li class="blog-list">
-            <div>
-                <div><a href="{{ page.url }}">{{ page.title }}</a></div>
-                <div style="font-size: 10pt; margin-top: 5px;">{{ page.date | date: "%Y-%m-%d" }}</div>
-            </div>
-        </li>
+        <div class="blog-list">
+            <div><a href="{{ page.url }}">{{ page.title }}</a></div>
+            <div style="font-size: 10pt; margin-top: 5px;">{{ page.date | date: "%Y-%m-%d" }}</div>
+        </div>
     {% else %}
         No posts yet.
     {% endfor %}
-</ul>
+</div>
