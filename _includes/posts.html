@@ -2,7 +2,7 @@
     {% for page in include.pages %}
         <div class="blog-list">
             <div><a href="{{ page.url }}">{{ page.title }}</a></div>
-            <div style="font-size: 10pt; margin-top: 5px;">{{ page.date | date: "%Y-%m-%d" }}</div>
+            <div style="font-size: 10pt; margin-top: 5px;">{{ page.date | date: "%B %Y" }}</div>
         </div>
     {% else %}
         No posts yet.
