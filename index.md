@@ -9,4 +9,17 @@ Experienced in various programming languages and coding paradigms with proficien
 
 I am a big fan of Rust, NeoVim, and Scandinavian languages, foremost Swedish.
 
-E-Mail: input {ät} lausek {dot} eu
+<div class="project-links">
+    <span class="project-link"><a id="contact">E-Mail</a></span>
+    <script>
+        (document.addEventListener("DOMContentLoaded", function () {
+            var node = document.getElementById("contact");
+            node.onclick = function () {
+                if(contact.href) return;
+                var url = atob("aW5wdXRAbGF1c2VrLmV1");
+                contact.innerHTML += ": " + url;
+                contact.href = atob("bWFpbHRvOg==") + url;
+            };
+        }))
+    </script>
+</div>
