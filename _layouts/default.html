@@ -4,7 +4,12 @@ mode: center
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>{{ site.title }}</title>
+        <title>
+            {% if page.title %}
+                {{ page.title }} |
+            {% endif %}
+            {{ site.title }}
+        </title>
         <meta charset="utf-8" />
         <link rel="alternate" type="alternate/rss+xml" href="/feed.xml" />
         {% include stylesheet.html %}
@@ -30,10 +35,11 @@ mode: center
             </div>
             <div id="left-triangle"></div>
         </div>
-        <div id="right"  class="mode-{{ layout.mode }}">
+        <div id="right" class="mode-{{ layout.mode }}">
             <div id="right-inner">
                 <main id="right-content">
                     {{ content }}
+                    <div id="right-padding"></div>
                 </main>
             </div>
         </div>

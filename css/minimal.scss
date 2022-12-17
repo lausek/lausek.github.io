@@ -152,7 +152,7 @@ p {
     margin: auto;
     max-width: 420px;
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 article {
@@ -168,6 +168,42 @@ article {
     .article-content {
         text-align: justify;
         padding: 10px 0;
+
+        h1, h2, h3,
+        h4, h5, h6 {
+          margin-top: 60px;
+        }
+
+        blockquote {
+          background-color: #f8f8f8;
+          margin: 10px;
+          padding: 0 10px;
+          border-left: 4px solid var(--eerie-black);
+          overflow-wrap: break-word;
+
+          p {
+            padding: 5px;
+          }
+        }
+
+        pre {
+          background-color: #f8f8f8;
+          padding: 20px;
+          overflow-x: auto;
+
+          code {
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            word-break: break-word;
+          }
+        }
+
+        li {
+          margin-bottom: 10px;
+        }
     }
 }
 
@@ -211,6 +247,10 @@ article {
     #right-content p {
         line-height: 1.7;
         text-align: justify;
+    }
+
+    #right-padding {
+      min-height: 100px;
     }
 }
 
