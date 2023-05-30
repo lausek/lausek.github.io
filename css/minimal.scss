@@ -108,6 +108,10 @@ p {
     justify-content: center;
 }
 
+#right-inner {
+  padding-top: 30px;
+}
+
 .mode-full #right-inner {
     display: unset !important;
 }
@@ -122,6 +126,7 @@ p {
 #right-content {
     max-width: 700px;
     min-height: 40%;
+    max-height: 100%;
 }
 
 .project-separator {
