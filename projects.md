@@ -3,6 +3,20 @@ title: Projects
 layout: default
 ---
 
+### vfbboxberg.de
+
+A full-stack project for my sports club that I'm putting my heart into.
+The website is backed by a classic Django application.
+One exciting thing about the project is that all the content is available via a PWA as well.
+The app will be expanded in future releases to provide members with more engagement opportunities.
+
+<div class="project-links">
+    <span class="project-link"><a href="https://vfbboxberg.de">Homepage</a></span>
+    <span class="project-link"><a href="https://app.vfbboxberg.de">App</a></span>
+</div>
+
+<div class="project-separator"></div>
+
 ### lovm2
 
 A small library implementing code generation tools and a bytecode interpreter. It is intended as a simple foundation for programming language development. Basically, all you have to do is write a parser and do some transpiling. It offers bindings for my two favorite development environments, Rust and Python.
