@@ -21,7 +21,7 @@ You'll see something along the lines of:
 4: br-380a59df812e: ...
     inet 172.18.0.1/16 ...
 5: docker0: ...
-    inet 172.26.0.1/16 ...
+    inet 172.18.0.1/16 ...
 ```
 
 The `wlp0s20f3` interface has an IP address but the default gateway collides with networks created by the docker daemon.
@@ -43,7 +43,7 @@ If the IP address of docker did not change, restart your device and let me know.
 
 # Cleanup the old interfaces
 
-You've probably noticed that the `br-xxxx` devices are down.
+You've probably noticed that the `br-xxxx` devices are still there.
 Let's remove them with this command:
 
 ```bash
