@@ -177,6 +177,7 @@ article {
         h1, h2, h3,
         h4, h5, h6 {
           margin-top: 60px;
+          text-align: left;
         }
 
         blockquote {
@@ -195,6 +196,7 @@ article {
           background-color: #f8f8f8;
           padding: 20px;
           overflow-x: auto;
+          text-align: left;
 
           code {
             white-space: pre-wrap;       /* css-3 */
@@ -252,6 +254,14 @@ article {
     #right-content p {
         line-height: 1.7;
         text-align: justify;
+    }
+
+    .article-content {
+        h1, h2, h3,
+        h4, h5, h6,
+        pre {
+          text-align: left;
+        }
     }
 
     #right-padding {
