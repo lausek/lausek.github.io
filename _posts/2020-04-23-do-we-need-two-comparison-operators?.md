@@ -8,14 +8,14 @@ For me, this aligns better with the English reading flow - left to right - and I
 You don't have to do any mental context switching between "right is greater" or "right is less".
 
 For said reason, I've almost entirely dropped usage of `>` and strictly use `<` ever since.
-Instead of:
+Instead of
 
 ``` python
 if value > -100 and value < 100:
     ...
 ```
 
-I would go with code that looks more like this:
+I would go with code that looks more like this
 
 ``` python
 if -100 < value and value < 100:

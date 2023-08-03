@@ -12,16 +12,17 @@ We'll achieve this by pulling an image and spinning it up using [QEMU](https://w
 4. [Add a throwaway layer](#add-a-throwaway-layer)
 5. [Start the machine](#start-the-machine)
 6. [Run Ansible](#run-ansible)
+7. [Make it a script](#make-it-a-script)
 
 ## Setup environment
 
-For a Linux distribution like Debian or Ubuntu, you can install QEMU and required tools like this:
+For a Linux distribution like Debian or Ubuntu, you can install QEMU and required tools like this
 
 ```bash
 sudo apt update && sudo apt install -y qemu-system-x86 cloud-utils
 ```
 
-Let's also create a cache directory to persist our progress on disk:
+Let's also create a cache directory to persist our progress on disk
 
 ```bash
 mkdir -p ".qemu"
@@ -30,7 +31,7 @@ mkdir -p ".qemu"
 ## Select a base image
 
 Now go and fetch yourself a cloudinit VM image.
-As of writing this post, you can download the latest Ubuntu version onto your machine like so:
+As of writing this post, you can download the latest Ubuntu version onto your machine like so
 
 ```bash
 curl -L "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img" > ".qemu/base.img"
@@ -78,7 +79,7 @@ cloud-localds ".qemu/vm-seed.img" ".qemu/user-data.yaml" ".qemu/metadata.yaml"
 
 By default, QEMU will update the given images on disk unless you provide some smart parameters.
 There is an easier way to ensure isolation, however.
-For this reason, you can create a copy-on-write image that acts as a middleware between your chosen base image and the VM's state:
+For this reason, you can create a copy-on-write image that acts as a middleware between your chosen base image and the VM's state
 
 ```bash
 qemu-img create -b ".qemu/base.img" ".qemu/vm-data.img" -f qcow2 -F qcow2
@@ -86,7 +87,7 @@ qemu-img create -b ".qemu/base.img" ".qemu/vm-data.img" -f qcow2 -F qcow2
 
 ## Start the machine
 
-After setting up the data and seed layers, we can spawn our VM:
+After setting up the data and seed layers, we can spawn our VM
 
 ```bash
 qemu-system-x86_64 \
@@ -101,9 +102,15 @@ qemu-system-x86_64 \
 ## Run Ansible
 
 Congratulations - you may test your VM now!
-I like to use Ansible for automating my server setup:
+I like to use Ansible for automating my server setup so usually I create a new inventory file.
+The rest is as trivial as running
 
 ```bash
 pip3 install ansible
 ansible -i configure.yml
 ```
+
+## Make it a script
+
+If you haven't already you should really check out how to turn these project specific commands into a `do` script.
+Here's an excellent summary about it: [https://pelle.io/posts/project-developer-experience-do-file/](https://pelle.io/posts/project-developer-experience-do-file/).

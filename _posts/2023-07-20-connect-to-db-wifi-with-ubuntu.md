@@ -52,5 +52,5 @@ sudo docker network prune
 
 # Open the wifi login page
 
-Now go to [wifionice.de](https://www.wifionice.de) or [bahn.de](https://bahn.de).
+Go to [wifionice.de](https://www.wifionice.de) or [bahn.de](https://bahn.de).
 It should work now! 🎉
