@@ -13,11 +13,11 @@ layout: none
         {% for post in site.posts %}
         <item>
             <title>{{ post.title }}</title>
-            <description>{{ post.description }}</description>
+            <description><![CDATA[{{ post.content }}]]></description>
             <link>{{ site.url }}{{ post.url }}</link>
             <author>lausek</author>
             <guid>{{ post.id }}</guid>
-            <pubDate>{{ post.date }}T00:00:00Z</pubDate>
+            <pubDate>{{ post.date | date: "%Y-%m-%dT%H:%M:%SZ" }}</pubDate>
         </item>
         {% endfor %}
     </channel>
