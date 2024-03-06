@@ -24,7 +24,7 @@ task-ensure-setup() {
 task-dev() {
     task-ensure-setup
 
-    bundle exec jekyll serve
+    bundle exec jekyll serve --livereload
 }
 
 "task-$1"
