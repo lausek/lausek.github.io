@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Mail Preview</title>
+
+        <script>
+            (function () {
+                function urlsafeDecode(data) {
+                    return atob(data.replace(/_/g, '/').replace(/-/g, '+'));
+                }
+
+                function main() {
+                    const previewNode = document.querySelector("#preview");
+
+                    const searchParams = new URLSearchParams(window.location.search);
+                    const rawContent = searchParams.get("content");
+
+                    if (!rawContent) return;
+
+                    const content = urlsafeDecode(rawContent);
+                    previewNode.contentWindow.document.write(content);
+                }
+
+                document.addEventListener("DOMContentLoaded", main);
+            })()
+        </script>
+
+        <style>
+            html, body {
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 0;
+                height: 100%;
+            }
+
+            main {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin: 5px;
+                gap: 20px;
+                height: 100%;
+            }
+
+            #preview {
+                flex-grow: 1;
+                border: 1px solid gray;
+            }
+        </style>
+    </head>
+    <body>
+        <main >
+            <div>
+                <h1>Mail Preview</h1>
+                <p>Set query parameter <i>content</i> to a base64 encoded html string</p>
+            </div>
+
+            <iframe id="preview">
+                <p><strong>No preview.</strong></p>
+            </iframe>
+        </main>
+    </body>
+</html>
