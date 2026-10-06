@@ -9,6 +9,7 @@ task-setup() {
     sudo apt-get install -y ruby ruby-dev 1> /dev/null
 
     gem install --user-install jekyll bundler
+    bundle install
 
     echo "Ruby version:" $(ruby -v)
     echo "Gem version:" $(gem -v)
@@ -16,7 +17,7 @@ task-setup() {
 
 task-ensure-setup() {
     if ! [ -x "$(command -v ruby)" ]; then
-        echo "Ruby not found. Run ./go setup ..."
+        echo "Ruby not found. Run ./do setup ..."
         exit 1
     fi
 }
