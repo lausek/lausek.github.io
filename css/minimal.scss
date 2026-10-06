@@ -83,6 +83,11 @@ p {
     overflow-y: auto;
 }
 
+/* the nav links jump to #right, which focuses it once it becomes scrollable */
+#right:focus {
+    outline: none;
+}
+
 #left-inner {
     color: var(--white);
     background-color: var(--eerie-black);
